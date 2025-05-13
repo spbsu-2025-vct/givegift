@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { useSupabase } from "../../context/SupabaseContext/SupabaseContext";
 import { privateRoutes } from "../../router";
 import { SupabaseAuth } from "../../pages/Auth/SupabaseAuth";
-import { PageLoader } from "../../components/UI/Loader/PageLoader";
+import { PageLoader } from "../UI/Loader/PageLoader/PageLoader";
 import { NotFound } from "../../pages/Error/NotFound";
 
 export const AppRouter = () => {
