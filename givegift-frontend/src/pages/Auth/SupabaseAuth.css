@@ -1,0 +1,31 @@
+.sbui-Wrapper,
+.sbui-Input,
+.sbui-Label,
+.sbui-Button {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.custom-auth-button {
+    font-size: 0.875rem !important;
+    padding: 0.5rem 1rem !important;
+    min-height: auto !important;
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.2)), url(../../assets/background.png);
+}
+
+.auth-wrapper {
+    padding: 25px;
+    max-width: 30vw;
+    max-height: 80%;
+    min-width: 320px;
+    border: 1px solid lightgrey;
+    background: white;
+    border-radius: 0.5rem;
+    overflow: auto;
+}
