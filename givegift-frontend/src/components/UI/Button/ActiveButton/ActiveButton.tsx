@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./ActiveButton.module.css";
 
-interface ActiveButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ActiveButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   btnRef?: React.Ref<HTMLButtonElement>;
 }
 

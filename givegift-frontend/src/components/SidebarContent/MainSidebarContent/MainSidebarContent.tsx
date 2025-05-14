@@ -16,6 +16,7 @@ export const MainSidebarContent: FC = () => {
             interests: userInterests,
             price_range: priceRangeValue,
         });
+
     };
 
     const [priceRangeValue, setPriceRangeValue] = useState([minPrice, maxPrice]);

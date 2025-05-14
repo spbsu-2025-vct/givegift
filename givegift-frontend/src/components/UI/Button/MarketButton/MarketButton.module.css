@@ -1,0 +1,17 @@
+.market_button {
+    width: 100%;
+}
+
+.market_button_content {
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 7px;
+    font-size: 15px;
+}
+
+.market_button_content img {
+    width: 2em;
+    height: 2em;
+}

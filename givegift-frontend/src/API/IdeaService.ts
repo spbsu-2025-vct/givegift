@@ -1,9 +1,7 @@
 import axios from "axios";
+import type { IUserIdeaProperties } from "../types";
 
-export interface IUserIdeaProperties {
-  interests: string[];
-  price_range: number[];
-}
+
 
 export default class IdeaService {
   static async generateIdeas(userIdeaProperties: IUserIdeaProperties, is_adult: boolean) {

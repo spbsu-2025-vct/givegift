@@ -9,14 +9,13 @@ import React, {
 import { useFetching } from "../../hooks/useFetching";
 import InterestService from "../../API/InterestService";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import type { Interest } from "../../types";
 
 interface InterestContextType {
-  allInterests: string[];
+  allInterests: Interest[];
   fetchInterests: () => Promise<void>;
-  isInterestsLoading: boolean;
-  interestError: string;
-  userInterests: string[];
-  setUserInterests: Dispatch<SetStateAction<string[]>>;
+  userInterests: Interest[];
+  setUserInterests: Dispatch<SetStateAction<Interest[]>>;
 }
 
 export const InterestContext = createContext<InterestContextType | null>(null);
@@ -24,27 +23,27 @@ export const InterestContext = createContext<InterestContextType | null>(null);
 export const InterestContextProvider: React.FC<{
   children: ReactNode;
 }> = ({ children }) => {
-  const [allInterests, setAllInterests] = useState<string[]>([]);
-  const [userInterests, setUserInterests] = useLocalStorage<string[]>(
+  const [allInterests, setAllInterests] = useState<Interest[]>([]);
+  const [userInterests, setUserInterests] = useLocalStorage<Interest[]>(
     "userInterests",
     []
   );
 
-  const [fetchInterests, isInterestsLoading, interestError] = useFetching(
+  const [fetchInterests, ,] = useFetching(
     async () => {
-      const response = await InterestService.fetchAll();
-      setAllInterests(response.data?.all_interests ?? [
+      setAllInterests([
         'Природа', 'Спорт', 'Культура', 'Кино', 'Музыка', 'Театр', 'Книги', 'Кулинария',
         'Путешествия', 'Автомобили', 'Политика', 'Дизайн', 'Искусство', 'Животные',
-      ]); // TODO: MOCKED
+      ]);
+      // TODO: MOCKED
+      const response = await InterestService.fetchAll();
+
     }
   );
 
   const value: InterestContextType = {
     allInterests,
     fetchInterests,
-    isInterestsLoading,
-    interestError,
     userInterests,
     setUserInterests,
   };

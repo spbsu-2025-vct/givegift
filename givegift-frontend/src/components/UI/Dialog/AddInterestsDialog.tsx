@@ -1,13 +1,14 @@
 import { Autocomplete, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, styled, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import type { Interest } from "../../../types";
 
 interface AddInterestsDialogProps {
     open: boolean;
     handleClose: () => void;
-    addInterests: (interests: string[]) => void;
-    availableInterests: string[];
-    selectedInterests: string[];
-    setSelectedInterests: (interests: string[]) => void;
+    addInterests: (interests: Interest[]) => void;
+    availableInterests: Interest[];
+    selectedInterests: Interest[];
+    setSelectedInterests: (interests: Interest[]) => void;
 }
 
 export const AddInterestsDialog: React.FC<AddInterestsDialogProps> = ({

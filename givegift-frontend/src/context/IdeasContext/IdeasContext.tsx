@@ -7,11 +7,13 @@ import React, {
   useContext,
 } from "react";
 import { useFetching } from "../../hooks/useFetching";
-import IdeaService, { type IUserIdeaProperties } from "../../API/IdeaService";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import type { IProduct, IUserIdeaProperties } from "../../types";
+import IdeaService from "../../API/IdeaService";
+
 
 interface IdeasContextType {
-  ideas: string[];
+  productIdeas: IProduct[];
   generateIdeas: (userIdeaProperties: IUserIdeaProperties) => Promise<void>;
   isIdeasLoading: boolean;
   ideaError: string;
@@ -24,21 +26,21 @@ export const IdeasContext = createContext<IdeasContextType | null>(null);
 export const IdeasContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [ideas, setIdeas] = useState<string[]>([]);
+  const [productIdeas, setProductIdeas] = useState<IProduct[]>([]);
   const [isAdult, setIsAdult,] = useLocalStorage("isAdult", false);
 
   const [generateIdeas, isIdeasLoading, ideaError] = useFetching(
-    async (userIdeaProperties: any) => {
+    async (userIdeaProperties: IUserIdeaProperties) => {
       const response = await IdeaService.generateIdeas(
         userIdeaProperties,
         isAdult
       );
-      setIdeas([]); // TODO: mocked, was response.data
+      setProductIdeas([]); // TODO: mocked, was response.data
     }
   );
 
   const value: IdeasContextType = {
-    ideas,
+    productIdeas,
     generateIdeas,
     isIdeasLoading,
     ideaError,

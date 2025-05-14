@@ -1,6 +1,6 @@
 import React from "react";
-import loading from "../../../assets/mascot_loading.png";
-import styles from "./Loader.module.css";
+import loading from "../../../../assets/mascot_loading.png";
+import styles from "./IdeasLoader.module.css";
 import { CircularProgress } from "@mui/material";
 
 interface IdeasLoaderProps {

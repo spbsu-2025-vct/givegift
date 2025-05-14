@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Error.module.css";
+import styles from "./ResultsError.module.css";
 import error_img from "../../../assets/mascot_error.png";
 
 interface ResultsErrorProps {

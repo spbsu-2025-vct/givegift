@@ -3,57 +3,25 @@ import styles from "./InterestList.module.css";
 import { Tag } from "../UI/Tag/Tag";
 import { PlusButton } from "../UI/Button/PlusButton/PlusButton";
 import { AddInterestsDialog } from "../UI/Dialog/AddInterestsDialog";
+import type { Interest } from "../../types";
+import { useInterests } from "../../context/InterestContext/InterestContext";
 interface InterestListProps {
-  removeInterest: (interest: string) => void;
-  addInterests: (interests: string[]) => void;
+  removeInterest: (interest: Interest) => void;
+  addInterests: (interests: Interest[]) => void;
 }
 
 const InterestList: React.FC<InterestListProps> = ({
   addInterests,
   removeInterest,
 }) => {
-  // TODO: mocked
-  const userInterests = [
-    "Природа",
-    "Спорт",
-    "Культура",
-    "Кино",
-    "Музыка",
-    "Театр",
-    "Книги",
-    "Кулинария",
-    "Путешествия",
-    "Автомобили",
-    "Политика",
-    "Дизайн",
-    "Искусство",
-    "Животные",
-  ];
-
-  const allInterests = [
-    "Прaирода",
-    "Спsорт",
-    "Куaльтура",
-    "Кsино",
-    "Муaзыка",
-    "Теаaтр",
-    "Книaги",
-    "Кулиaнария",
-    "Путешествия",
-    "Автaомобили",
-    "Полиaтика",
-    "Диaзайн",
-    "Исaкусство",
-    "Жиaвотные",
-    "Дaухи",
-  ];
+  const { userInterests, allInterests } = useInterests();
 
   const availableInterests = allInterests.filter(
     (i) => !userInterests.includes(i)
   );
 
   const [open, setOpen] = React.useState(false);
-  const [selectedInterests, setSelectedInterests] = React.useState<string[]>([]);
+  const [selectedInterests, setSelectedInterests] = React.useState<Interest[]>([]);
 
   const handleClickOpen = () => {
     setOpen(true);

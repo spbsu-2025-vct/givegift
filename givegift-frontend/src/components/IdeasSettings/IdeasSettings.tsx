@@ -4,6 +4,7 @@ import { SidebarContentBlock } from "../SidebarContentBlock/SidebarContentBlock"
 import RangeSlider from "../UI/RangeSlider/RangeSlider";
 import InterestList from "../InterestList/InterestList";
 import { useInterests } from "../../context/InterestContext/InterestContext";
+import type { Interest } from "../../types";
 
 interface IdeasSettingsProps {
     priceRangeValue: number[];
@@ -13,11 +14,11 @@ interface IdeasSettingsProps {
 const CustomSettings: React.FC<IdeasSettingsProps> = ({ priceRangeValue, handlePriceRangeChange }) => {
     const { userInterests, setUserInterests } = useInterests();
 
-    const removeInterest = (interest: string) => {
+    const removeInterest = (interest: Interest) => {
         setUserInterests(userInterests.filter((i) => i !== interest));
     }
 
-    const addInterests = (interests: string[]) => {
+    const addInterests = (interests: Interest[]) => {
         setUserInterests([...userInterests, ...interests]);
     }
 
