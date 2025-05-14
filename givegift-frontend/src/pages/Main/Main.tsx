@@ -6,7 +6,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import { GettingStarted } from "../../components/GettingStarted/GettingStarted";
 import { Header } from "../../components/Header/Header";
 import { IconButton, Tooltip } from "@mui/material";
-import { MainSidebarContent } from "../../components/MainSidebarContent/MainSidebarContent";
+import { MainSidebarContent } from "../../components/SidebarContent/MainSidebarContent/MainSidebarContent";
 
 // TODO: был чек на isNewUser и показывал GettingStarted
 export const Main: React.FC = () => {

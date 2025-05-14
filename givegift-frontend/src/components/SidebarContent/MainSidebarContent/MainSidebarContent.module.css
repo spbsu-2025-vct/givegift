@@ -1,0 +1,6 @@
+.mainpage_sidebar_content {
+    display: grid;
+    align-content: start;
+    grid-row-gap: 15px;
+    margin-bottom: 20px;
+}

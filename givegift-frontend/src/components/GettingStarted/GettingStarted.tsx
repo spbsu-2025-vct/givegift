@@ -1,5 +1,5 @@
 import styles from "./GettingStarted.module.css";
-import hello from "../../../assets/mascot_hello.png";
+import hello from "../../assets/mascot_hello.png";
 
 export const GettingStarted = () => {
   return (

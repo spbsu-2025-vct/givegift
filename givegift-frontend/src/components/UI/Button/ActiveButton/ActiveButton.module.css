@@ -1,0 +1,24 @@
+.active_btn {
+  background-color: #ff6332;
+  color: white;
+
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+
+  border-radius: 10px;
+
+  font-family: "Montserrat", "sans-serif";
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.active_btn:disabled {
+  cursor: wait;
+}
+
+.active_btn:hover:not([disabled]) {
+  background-color: #cb451a;
+  transition-duration: 0.4s;
+}

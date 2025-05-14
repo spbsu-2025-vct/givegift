@@ -15,38 +15,44 @@
  */
 import { useState } from "react";
 
-
-export function useLocalStorage<T>(keyName: string, initState: T): [
-    T,
-    (state: T) => void,
-    () => void
-] {
+export function useLocalStorage<T>(
+    keyName: string,
+    initState: T
+): [
+        T,
+        React.Dispatch<React.SetStateAction<T>>,
+        () => void
+    ] {
+    // read from localStorage (or fall back)
     function getLocalStorageState(): T {
-        const storedState = localStorage.getItem(keyName);
-        if (storedState !== null) {
+        const stored = localStorage.getItem(keyName);
+        if (stored !== null) {
             try {
-                return JSON.parse(storedState) as T;
+                return JSON.parse(stored) as T;
             } catch {
-                // return initial state if JSON parsing fails
                 return initState;
             }
         }
         return initState;
     }
 
-    const [localStorageState, setLocalStorageState] = useState<T>(
-        getLocalStorageState()
-    );
+    const [state, setState] = useState<T>(getLocalStorageState);
 
-    function saveLocalStorageState(state: T): void {
-        localStorage.setItem(keyName, JSON.stringify(state));
-        setLocalStorageState(state);
-    }
+    const setAndStore: React.Dispatch<React.SetStateAction<T>> = (value) => {
+        setState((prev) => {
+            const newValue =
+                typeof value === "function"
+                    ? (value as (prev: T) => T)(prev)
+                    : value;
+            localStorage.setItem(keyName, JSON.stringify(newValue));
+            return newValue;
+        });
+    };
 
-    function removeLocalStorageState(): void {
+    const remove = () => {
         localStorage.removeItem(keyName);
-        setLocalStorageState(initState);
-    }
+        setState(initState);
+    };
 
-    return [localStorageState, saveLocalStorageState, removeLocalStorageState];
+    return [state, setAndStore, remove];
 }
