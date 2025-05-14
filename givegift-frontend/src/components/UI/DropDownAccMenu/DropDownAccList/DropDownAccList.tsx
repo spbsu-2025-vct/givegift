@@ -2,24 +2,27 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "../DropDownAccMenu.module.css";
 import { Divider, MenuItem } from "@mui/material";
-import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useSupabase } from "../../../../context/SupabaseContext/SupabaseContext";
+import { RouteNames } from "../../../../router";
 interface DropDownAccListProps {
   handleClose: () => void;
 }
 
 const DropDownAccList: React.FC<DropDownAccListProps> = ({ handleClose }) => {
+  const { supabase } = useSupabase();
 
   return (
     <>
-      <NavLink end to="/account/0" className={styles.acc_menu_item_link}>
+      <NavLink end to={RouteNames.FAVOURITE} className={styles.acc_menu_item_link}>
         <MenuItem
           onClick={handleClose}
           className={styles.acc_menu_item}
           disableRipple
         >
-          <PersonIcon />
-          <span>Профиль</span>
+          <FavoriteBorderIcon />
+          <span>Избранное</span>
         </MenuItem>
       </NavLink>
 
@@ -29,6 +32,7 @@ const DropDownAccList: React.FC<DropDownAccListProps> = ({ handleClose }) => {
       <NavLink to={"/"} style={{ textDecoration: "none" }}>
         <MenuItem
           onClick={() => {
+            supabase.auth.signOut();
             handleClose();
           }}
           disableRipple
