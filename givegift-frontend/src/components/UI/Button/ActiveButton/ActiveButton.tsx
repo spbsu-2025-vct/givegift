@@ -1,20 +1,21 @@
 import React from "react";
 import styles from "./ActiveButton.module.css";
 
-interface ActiveButtonProps {
-  children: React.ReactNode;
-  className?: string;
-  btnRef?: React.RefObject<HTMLButtonElement>;
-  disabled?: boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+interface ActiveButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  btnRef?: React.Ref<HTMLButtonElement>;
 }
 
-const ActiveButton = ({ children, className, btnRef, ...props }: ActiveButtonProps) => {
+const ActiveButton: React.FC<ActiveButtonProps> = ({
+  children,
+  className = "",
+  btnRef,
+  ...props
+}) => {
   return (
     <button
       ref={btnRef}
       {...props}
-      className={styles.active_btn + " " + className}
+      className={`${styles.active_btn} ${className}`}
     >
       {children}
     </button>
