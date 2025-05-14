@@ -12,7 +12,6 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Ideas } from "../../components/Ideas/Ideas";
 import { useInterests } from "../../context/InterestContext/InterestContext";
 
-// TODO: был чек на isNewUser и показывал GettingStarted
 export const Main: React.FC = () => {
     const { isAdult, setIsAdult } = useIdeas();
     const [isNewUser, setIsNewUser] = useLocalStorage("isNewUser", true);
@@ -38,7 +37,7 @@ export const Main: React.FC = () => {
                     </div>
                 }
             >
-                <MainSidebarContent />
+                <MainSidebarContent setIsNewUser={setIsNewUser} />
             </Sidebar>
 
             {isNewUser ? <GettingStarted /> : <Ideas />}

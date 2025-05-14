@@ -6,7 +6,6 @@ import default_user_logo from "../../assets/user.svg";
 import DropDownAccMenu from "../UI/DropDownAccMenu/DropDownAccMenu";
 
 
-// TODO: подтягивать supabase context
 export const Header: React.FC = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);

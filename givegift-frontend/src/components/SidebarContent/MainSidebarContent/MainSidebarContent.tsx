@@ -7,7 +7,11 @@ import { maxPrice, minPrice } from "../../../utils/constants";
 import { useInterests } from "../../../context/InterestContext/InterestContext";
 import { useIdeas } from "../../../context/IdeasContext/IdeasContext";
 
-export const MainSidebarContent: FC = () => {
+interface MainSidebarContentProps {
+    setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export const MainSidebarContent: FC<MainSidebarContentProps> = ({ setIsNewUser }) => {
     const { generateIdeas, isIdeasLoading } = useIdeas();
     const { userInterests } = useInterests();
 
@@ -16,7 +20,7 @@ export const MainSidebarContent: FC = () => {
             interests: userInterests,
             price_range: priceRangeValue,
         });
-
+        setIsNewUser(false);
     };
 
     const [priceRangeValue, setPriceRangeValue] = useState([minPrice, maxPrice]);

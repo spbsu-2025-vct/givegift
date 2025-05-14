@@ -35,9 +35,8 @@ export const InterestContextProvider: React.FC<{
         'Природа', 'Спорт', 'Культура', 'Кино', 'Музыка', 'Театр', 'Книги', 'Кулинария',
         'Путешествия', 'Автомобили', 'Политика', 'Дизайн', 'Искусство', 'Животные',
       ]);
-      // TODO: MOCKED
+      // TODO: MOCKED. Тут было после фетча присваивание распонса в allInterests
       const response = await InterestService.fetchAll();
-
     }
   );
 

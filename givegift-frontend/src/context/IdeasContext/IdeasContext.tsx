@@ -35,7 +35,7 @@ export const IdeasContextProvider: React.FC<{ children: ReactNode }> = ({
         userIdeaProperties,
         isAdult
       );
-      setProductIdeas([]); // TODO: mocked, was response.data
+      setProductIdeas(response.data);
     }
   );
 

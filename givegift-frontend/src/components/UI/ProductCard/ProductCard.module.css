@@ -1,4 +1,4 @@
-.idea {
+.product {
     background-color: #fff;
     border-radius: 10px;
     height: fit-content;
@@ -6,14 +6,14 @@
     transition: transform .3s;
 }
 
-.ideaContent {
+.productContent {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
     margin: 15px;
 }
 
-.ideaContent .title {
+.productContent .title {
     font-size: 15px;
     font-weight: 700;
     color: #373737;
@@ -28,24 +28,23 @@
     --line-height: 1.2;
 }
 
-.idea:hover .ideaContent .title {
+.product:hover .productContent .title {
     display: table;
 }
 
-.idea:hover {
+.product:hover {
     box-shadow: 0 4px 70px 0 rgba(0, 0, 0, 0.2);
     z-index: 3;
-    transform: scale(1.05);
+    transform: scale(1.025);
     transition: transform .3s;
 }
 
 
-.ideaContent .description {
+.productContent .description {
     font-size: 17px;
     font-weight: 400;
 }
 
-.ideaContent img {
+.productContent img {
     border-radius: 10px;
-    /* Мб откажусь потом от этого, т.к. изображение шакалит */
 }
