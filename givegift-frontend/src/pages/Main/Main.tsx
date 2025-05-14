@@ -7,9 +7,11 @@ import { GettingStarted } from "../../components/GettingStarted/GettingStarted";
 import { Header } from "../../components/Header/Header";
 import { IconButton, Tooltip } from "@mui/material";
 import { MainSidebarContent } from "../../components/SidebarContent/MainSidebarContent/MainSidebarContent";
+import { useIdeas } from "../../context/IdeasContext/IdeasContext";
 
 // TODO: был чек на isNewUser и показывал GettingStarted
 export const Main: React.FC = () => {
+    const { isAdult, setIsAdult } = useIdeas();
     return <div className="app-wrapper">
         <Header />
         <div className={`content-with-sidebar app-wrapper-content`}>
@@ -19,9 +21,9 @@ export const Main: React.FC = () => {
                         <span>Фильтры идей</span>
                         <Tooltip
                             title={"Не показывать / показывать товары 18+"}>
-                            <IconButton onClick={() => { /* TODO */ }}>
+                            <IconButton onClick={() => { setIsAdult(!isAdult) }}>
                                 <NoAdultContentRoundedIcon
-                                    sx={{ color: true ? "grey" : "#fc4d17" }}
+                                    sx={{ color: isAdult ? "grey" : "#fc4d17" }}
                                 />
                             </IconButton>
                         </Tooltip>

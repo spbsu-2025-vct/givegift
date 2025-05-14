@@ -8,6 +8,7 @@ import React, {
 } from "react";
 import { useFetching } from "../../hooks/useFetching";
 import IdeaService, { type IUserIdeaProperties } from "../../API/IdeaService";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 interface IdeasContextType {
   ideas: string[];
@@ -24,7 +25,7 @@ export const IdeasContextProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [ideas, setIdeas] = useState<string[]>([]);
-  const [isAdult, setIsAdult] = useState(false);
+  const [isAdult, setIsAdult,] = useLocalStorage("isAdult", false);
 
   const [generateIdeas, isIdeasLoading, ideaError] = useFetching(
     async (userIdeaProperties: any) => {
