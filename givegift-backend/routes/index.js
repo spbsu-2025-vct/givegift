@@ -4,7 +4,7 @@ import { adminJs, adminRouter } from './adminRouter.js'
 
 const router = Router()
 
-router.use('/interest', interestRouter)
+router.use('/interests', interestRouter)
 
 router.use(adminJs.options.rootPath, adminRouter)
 

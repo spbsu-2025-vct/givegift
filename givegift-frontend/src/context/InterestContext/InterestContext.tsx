@@ -31,12 +31,8 @@ export const InterestContextProvider: React.FC<{
 
   const [fetchInterests, ,] = useFetching(
     async () => {
-      setAllInterests([
-        'Природа', 'Спорт', 'Культура', 'Кино', 'Музыка', 'Театр', 'Книги', 'Кулинария',
-        'Путешествия', 'Автомобили', 'Политика', 'Дизайн', 'Искусство', 'Животные',
-      ]);
-      // TODO: MOCKED. Тут было после фетча присваивание распонса в allInterests
       const response = await InterestService.fetchAll();
+      setAllInterests(response.data || []);
     }
   );
 
