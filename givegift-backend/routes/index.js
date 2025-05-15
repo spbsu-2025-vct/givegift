@@ -1,8 +1,11 @@
-const Router = require('express')
-const router = new Router()
+import { Router } from 'express'
+import interestRouter from './interestRouter.js'
+import { adminJs, adminRouter } from './adminRouter.js'
 
-const interestRouter = require('./interestRouter')
+const router = Router()
 
 router.use('/interest', interestRouter)
 
-module.exports = router
+router.use(adminJs.options.rootPath, adminRouter)
+
+export default router

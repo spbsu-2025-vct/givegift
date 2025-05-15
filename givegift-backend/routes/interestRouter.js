@@ -1,8 +1,7 @@
-const Router = require('express')
-const router = new Router()
+import { Router } from 'express'
+import interestController from '../controllers/interestController.js'
+const router = Router()
 
-router.get('/get_all_interests', async (req, res) => {
-    res.json({ message: "all works!" })
-})
+router.get('/get_all_interests', interestController.get_all_interests)
 
-module.exports = router
+export default router

@@ -4,13 +4,19 @@
   "description": "givegift backend side",
   "license": "ISC",
   "author": "",
-  "type": "commonjs",
-  "main": "index.js",
+  "type": "module",
+  "exports": "./index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
   "dependencies": {
+    "@adminjs/express": "^6.1.1",
+    "@adminjs/sequelize": "^4.1.1",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.15.18",
+    "@types/react": "^18.3.21",
+    "adminjs": "^7.8.15",
     "cors": "^2.8.5",
     "crossenv": "^0.0.2-security",
     "dotenv": "^16.5.0",
