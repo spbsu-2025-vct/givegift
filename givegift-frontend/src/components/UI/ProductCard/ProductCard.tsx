@@ -28,6 +28,8 @@ const Product: React.FC<IProduct> = ({ title, img_link, market_link }) => {
               display: loaded ? 'block' : 'none',
               width: '100%',
               borderRadius: '10px',
+              objectFit: "cover",
+              maxHeight: "180px",
             }}
           />
         </Box>

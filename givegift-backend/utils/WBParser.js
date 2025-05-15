@@ -1,7 +1,6 @@
 // Build the market link for a given product
-function generateMarketLink(title, minBudget, maxBudget) {
-    const encodedTitle = encodeURIComponent(title);
-    return `https://www.wildberries.ru/catalog/0/search.aspx?page=1&sort=popular&search=${encodedTitle}&priceU=${minBudget}00%3B${maxBudget}00`;
+function genProductLink(productID) {
+    return `https://www.wildberries.ru/catalog/${productID}/detail.aspx`
 }
 
 // Build the Wildberries search URL for a given query and price range
@@ -24,7 +23,7 @@ async function getQueryData(queryLink) {
 }
 
 // Extract the first product ID & name from the response
-function getFirstProductIdAndName(response, adult = false) {
+function getFirstProductIDAndName(response, adult = false) {
     try {
         const products = response?.data?.products;
 
@@ -38,34 +37,40 @@ function getFirstProductIdAndName(response, adult = false) {
 }
 
 
-// TODO: their way to store images has changed. Need to look through
 // Build the image URL for a given product ID
-function getImageLink(productId) {
+function getImageLink(productID) {
     try {
-        const shortId = Math.floor(productId / 100000);
-        // Determine basket based on shortId range
+        const shortID = Math.floor(productID / 100000);
+        // Determine basket based on shortID range
         let basket;
-        if (shortId <= 143) basket = '01';
-        else if (shortId <= 287) basket = '02';
-        else if (shortId <= 431) basket = '03';
-        else if (shortId <= 719) basket = '04';
-        else if (shortId <= 1007) basket = '05';
-        else if (shortId <= 1061) basket = '06';
-        else if (shortId <= 1115) basket = '07';
-        else if (shortId <= 1169) basket = '08';
-        else if (shortId <= 1313) basket = '09';
-        else if (shortId <= 1601) basket = '10';
-        else if (shortId <= 1655) basket = '11';
-        else if (shortId <= 1919) basket = '12';
-        else basket = '13';
+        if (shortID <= 143) basket = '01';
+        else if (shortID <= 287) basket = '02';
+        else if (shortID <= 431) basket = '03';
+        else if (shortID <= 719) basket = '04';
+        else if (shortID <= 1007) basket = '05';
+        else if (shortID <= 1061) basket = '06';
+        else if (shortID <= 1115) basket = '07';
+        else if (shortID <= 1169) basket = '08';
+        else if (shortID <= 1313) basket = '09';
+        else if (shortID <= 1601) basket = '10';
+        else if (shortID <= 1655) basket = '11';
+        else if (shortID <= 1919) basket = '12';
+        else if (shortID <= 2045) basket = '13';
+        else if (shortID <= 2189) basket = '14';
+        else if (shortID <= 2405) basket = '15';
+        else if (shortID <= 2621) basket = '16';
+        else if (shortID <= 2837) basket = '17';
+        else if (shortID <= 3053) basket = '18';
+        else basket = '19';
 
-        const vol = shortId;
-        const part = Math.floor(productId / 1000);
-        return `https://basket-${basket}.wb.ru/vol${vol}/part${part}/${productId}/images/big/1.jpg`;
+        const vol = shortID;
+        const part = Math.floor(productID / 1000);
+        return `https://basket-${basket}.wbbasket.ru/vol${vol}/part${part}/${productID}/images/big/1.webp`;
     } catch {
         return null;
     }
 }
+
 
 /* interface IProduct {
     market_link: string;
@@ -76,14 +81,14 @@ async function getProductInfo(productName, minBudget, maxBudget, adult = false) 
     try {
         const productQueryLink = getSearchLink(productName, minBudget, maxBudget);
         const response = await getQueryData(productQueryLink);
-        const productIDName = getFirstProductIdAndName(response, adult);
+        const productIDName = getFirstProductIDAndName(response, adult);
         if (!productIDName) return null;
 
         const [id, title] = productIDName;
         const imgLink = getImageLink(id);
 
         return {
-            market_link: generateMarketLink(title, minBudget, maxBudget),
+            market_link: genProductLink(id),
             title,
             img_link: imgLink
         }
