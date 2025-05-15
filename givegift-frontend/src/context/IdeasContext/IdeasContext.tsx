@@ -35,7 +35,7 @@ export const IdeasContextProvider: React.FC<{ children: ReactNode }> = ({
         userIdeaProperties,
         isAdult
       );
-      setProductIdeas(response.data);
+      setProductIdeas(response.data.filter((idea: IProduct | null) => idea !== null));
     }
   );
 
