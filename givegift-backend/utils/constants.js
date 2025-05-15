@@ -1,0 +1,1 @@
+export const NUM_OF_GENERATED_IDEAS = 10

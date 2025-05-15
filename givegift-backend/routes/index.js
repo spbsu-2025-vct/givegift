@@ -1,10 +1,12 @@
 import { Router } from 'express'
-import interestRouter from './interestRouter.js'
+import interestsRouter from './interestsRouter.js'
+import ideasRouter from './ideasRouter.js'
 import { adminJs, adminRouter } from './adminRouter.js'
 
 const router = Router()
 
-router.use('/interests', interestRouter)
+router.use('/interests', interestsRouter)
+router.use('/ideas', ideasRouter)
 
 router.use(adminJs.options.rootPath, adminRouter)
 

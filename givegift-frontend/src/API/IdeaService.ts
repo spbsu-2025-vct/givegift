@@ -103,13 +103,14 @@ export default class IdeaService {
       userIdeaProperties,
       is_adult,
     });
-    await new Promise<void>((resolve) => setTimeout(resolve, 1000));
 
+    const response = await axios.post("http://127.0.0.1:5000/ideas/generate", {
+      ...userIdeaProperties,
+      is_adult: is_adult,
+    });
+    console.log(response);
+
+    // TODO: still mocked but we r close
     return mockedData;
-
-    // return await axios.post("http://127.0.0.1:5000/generate_ideas", {
-    //   ...userIdeaProperties,
-    //   is_adult: is_adult,
-    // });
   }
 }
