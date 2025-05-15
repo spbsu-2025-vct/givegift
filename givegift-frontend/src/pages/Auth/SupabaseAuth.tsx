@@ -14,7 +14,7 @@ export const SupabaseAuth = () => {
             <Box className="auth-wrapper slider">
                 <Auth
                     supabaseClient={supabase}
-                    providers={["google"]}
+                    providers={[]}
                     appearance={{
                         theme: ThemeSupa,
                         variables: {
