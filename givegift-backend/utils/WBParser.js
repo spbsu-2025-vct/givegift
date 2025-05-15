@@ -1,11 +1,17 @@
-// Build the Wildberries search URL for a given product and price range
-function getSearchLink(nameOfProduct, minBudget, maxBudget) {
-    const encodedName = encodeURIComponent(nameOfProduct);
+// Build the market link for a given product
+function generateMarketLink(title, minBudget, maxBudget) {
+    const encodedTitle = encodeURIComponent(title);
+    return `https://www.wildberries.ru/catalog/0/search.aspx?page=1&sort=popular&search=${encodedTitle}&priceU=${minBudget}00%3B${maxBudget}00`;
+}
+
+// Build the Wildberries search URL for a given query and price range
+function getSearchLink(query, minBudget, maxBudget) {
+    const encodedQuery = encodeURIComponent(query);
     return [
         'https://search.wb.ru/exactmatch/ru/common/v4/search?appType=1',
         `&curr=rub&dest=-1257786`,
         `&priceU=${minBudget}00;${maxBudget}00`,
-        `&page=1&query=${encodedName}`,
+        `&page=1&query=${encodedQuery}`,
         `&resultset=catalog&sort=popular&spp=24`,
         `&suppressSpellcheck=false`
     ].join('');
@@ -77,7 +83,7 @@ async function getProductInfo(productName, minBudget, maxBudget, adult = false) 
         const imgLink = getImageLink(id);
 
         return {
-            market_link: productQueryLink,
+            market_link: generateMarketLink(title, minBudget, maxBudget),
             title,
             img_link: imgLink
         }
