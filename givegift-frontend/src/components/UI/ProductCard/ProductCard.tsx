@@ -2,15 +2,37 @@ import React, { useState } from "react";
 import styles from "./ProductCard.module.css";
 import MarketButton from "../Button/MarketButton/MarketButton";
 import type { IProduct } from "../../../types";
-import { Skeleton, Box } from "@mui/material";
+import { Skeleton, Box, IconButton } from "@mui/material";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useFavourites } from "../../../context/FavouritesContext/FavouritesContext";
 
 const Product: React.FC<IProduct> = ({ title, img_link, market_link }) => {
   const [loaded, setLoaded] = useState(false);
+  const [favourited, setFavourited] = useState(false);
+  const { addToFavourites, removeFromFavourites } = useFavourites()
+
+  const toggleFavourite = () => {
+    setFavourited((prev) => !prev);
+    if (favourited) {
+      removeFromFavourites({ title, img_link, market_link })
+    } else {
+      addToFavourites({ title, img_link, market_link })
+    }
+  };
 
   return (
     <div className={styles.product}>
       <div className={styles.productContent}>
         <Box sx={{ width: '100%', position: 'relative', borderRadius: '10px' }}>
+          <IconButton
+            className={styles.favButton}
+            onClick={toggleFavourite}
+            aria-label={favourited ? "Remove from favourites" : "Add to favourites"}
+          >
+            {favourited ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+          </IconButton>
+
           {!loaded && (
             <Skeleton
               variant="rectangular"

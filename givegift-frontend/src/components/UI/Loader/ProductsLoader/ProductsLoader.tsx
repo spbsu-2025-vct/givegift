@@ -1,13 +1,13 @@
 import React from "react";
 import loading from "../../../../assets/mascot_loading.png";
-import styles from "./IdeasLoader.module.css";
+import styles from "./ProductsLoader.module.css";
 import { CircularProgress } from "@mui/material";
 
-interface IdeasLoaderProps {
+interface ProductsLoaderProps {
   loadingText: string;
 }
 
-export const IdeasLoader: React.FC<IdeasLoaderProps> = ({ loadingText }) => {
+export const ProductsLoader: React.FC<ProductsLoaderProps> = ({ loadingText }) => {
   return (
     <div className="slider fadein" style={{ display: "grid" }}>
       <div className={styles.loader}>

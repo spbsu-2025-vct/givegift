@@ -1,7 +1,7 @@
 import { useIdeas } from "../../context/IdeasContext/IdeasContext";
 import { ResultsError } from "../../pages/Error/ResultsError/ResultsError";
 import ProductsList from "../ProductsList/ProductsList";
-import { IdeasLoader } from "../UI/Loader/IdeasLoader/IdeasLoader";
+import { ProductsLoader } from "../UI/Loader/ProductsLoader/ProductsLoader";
 
 
 export const Ideas = () => {
@@ -10,7 +10,7 @@ export const Ideas = () => {
     return (
         <>
             {isIdeasLoading ? (
-                <IdeasLoader loadingText={"Придумываем идеи..."} />
+                <ProductsLoader loadingText={"Придумываем идеи..."} />
             ) : ideaError ? (
                 <ResultsError errorMsg={ideaError} />
             ) : (

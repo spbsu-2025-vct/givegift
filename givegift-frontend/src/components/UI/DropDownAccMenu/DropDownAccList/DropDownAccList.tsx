@@ -15,7 +15,7 @@ const DropDownAccList: React.FC<DropDownAccListProps> = ({ handleClose }) => {
 
   return (
     <>
-      <NavLink end to={RouteNames.FAVOURITE} className={styles.acc_menu_item_link}>
+      <NavLink end to={RouteNames.FAVOURITES} className={styles.acc_menu_item_link}>
         <MenuItem
           onClick={handleClose}
           className={styles.acc_menu_item}

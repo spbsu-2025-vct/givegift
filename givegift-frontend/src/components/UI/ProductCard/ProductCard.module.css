@@ -48,3 +48,20 @@
 .productContent img {
     border-radius: 10px;
 }
+
+.favButton {
+    position: absolute !important;
+    top: 4px;
+    right: 4px;
+    z-index: 2;
+    width: 32px;
+    color: rgba(0, 0, 0, 0.35);
+    height: 32px;
+    padding: 4px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.favButton:hover {
+    background-color: rgba(255, 255, 255, 0.4) !important;
+}

@@ -4,6 +4,11 @@ export interface IProduct {
     img_link: string
 }
 
+export interface IFavProduct extends IProduct {
+    userID: string
+    tag?: string
+}
+
 export interface IUserIdeaProperties {
     interests: string[];
     price_range: number[];

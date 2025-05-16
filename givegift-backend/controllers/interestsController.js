@@ -1,11 +1,21 @@
 import { Interest } from '../models/models.js'
+import ApiError from '../error/ApiError.js'
 
 class InterestController {
-    async get_all_interests(_req, res) {
-        const interests = await Interest.findAll({ attributes: ['name'], raw: true })
-        const names = interests.map(i => i.name)
-        res.json(names)
+    async get_all_interests(_req, res, next) {
+        try {
+            const interests = await Interest.findAll({
+                attributes: ['name'],
+                raw: true
+            })
+
+            const names = interests.map(i => i.name)
+            return res.json(names)
+        } catch (err) {
+            console.error(err)
+            return next(ApiError.internal('Failed to fetch interests'))
+        }
     }
 }
 
-export default new InterestController() 
+export default new InterestController()

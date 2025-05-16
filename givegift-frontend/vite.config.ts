@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    // That's a dirty hack only to run the app on localhost with VPN
-    host: '127.0.0.1'
+    host: '127.0.0.1', // that's a dirty hack only to run the app on localhost with VPN
+    port: 3000,
   }
 })

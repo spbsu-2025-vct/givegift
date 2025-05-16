@@ -2,14 +2,12 @@ import AdminJS from 'adminjs'
 import AdminJSExpress from '@adminjs/express'
 import AdminJSSequelize from '@adminjs/sequelize'
 import sequelize from '../db.js'
-import { Interest } from '../models/models.js'
 
 AdminJS.registerAdapter(AdminJSSequelize)
 
 const adminJs = new AdminJS({
     databases: [sequelize],
     rootPath: '/admin',
-    resources: [{ resource: Interest }],
 })
 
 const DEFAULT_ADMIN = {
