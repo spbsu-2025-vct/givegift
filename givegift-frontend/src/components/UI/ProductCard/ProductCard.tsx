@@ -9,9 +9,10 @@ import { useFavourites } from "../../../context/FavouritesContext/FavouritesCont
 
 const Product: React.FC<IProduct> = ({ title, img_link, market_link }) => {
   const [loaded, setLoaded] = useState(false);
-  // TODO Нужно подтягивать из бд, есть ли у пользователя объект с такими характеристиками продуктами, а не говорить сразу false
-  const [favourited, setFavourited] = useState(false);
-  const { addToFavourites, removeFromFavourites } = useFavourites()
+  const { addToFavourites, allUserFavourites, removeFromFavourites } = useFavourites()
+
+  // По факту, у каждого продукта есть свой id, который зашифрован в ссылке, поэтому можно считать market_link неявным pk
+  const [favourited, setFavourited] = useState(allUserFavourites.some((product) => product.market_link === market_link));
 
   const toggleFavourite = () => {
     setFavourited((prev) => !prev);
