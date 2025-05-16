@@ -9,7 +9,7 @@ export const ResultsNotFound = () => {
         <div className={styles.not_found_text}>
           <span className={styles.main}>Ничего не найдено...</span>
           <span className={styles.secondary}>
-            Специализируйте параметры поиска и попробуйте еще раз
+            Попробуйте еще раз
           </span>
         </div>
       </div>

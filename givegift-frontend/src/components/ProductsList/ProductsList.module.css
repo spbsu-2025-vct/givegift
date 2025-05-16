@@ -1,6 +1,5 @@
-.found_ideas_header {
-    grid-area: found_header;
-    margin: 20px 30px;
+.products_list_header {
+    grid-area: products_list_header;
     color: #796964;
     font-feature-settings: "clig" off,
         "liga" off;
@@ -11,23 +10,22 @@
     line-height: 100%;
 }
 
-.ideas {
-    grid-area: ideas;
+.products {
+    grid-area: products;
     display: grid;
     grid-template-columns: repeat(auto-fit, 200px);
     grid-template-rows: repeat(auto-fit, 325px);
     align-content: start;
-    justify-content: center;
     grid-gap: 15px 10px;
-
-    margin-bottom: 20px;
 }
 
-.idea_list {
+.products_list {
     display: grid;
     grid-area: main_content;
+    padding: 30px 40px;
+    row-gap: 20px;
     grid-template-areas:
-        "found_header"
-        "ideas";
+        "products_list_header"
+        "products";
     grid-template-rows: min-content auto;
 }

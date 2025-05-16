@@ -9,7 +9,7 @@ import { IconButton, Tooltip } from "@mui/material";
 import { MainSidebarContent } from "../../components/SidebarContent/MainSidebarContent/MainSidebarContent";
 import { useIdeas } from "../../context/IdeasContext/IdeasContext";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { Ideas } from "../../components/Ideas/Ideas";
+import { IdeasMainContent } from "../../components/IdeasMainContent/IdeasMainContent";
 import { useInterests } from "../../context/InterestContext/InterestContext";
 
 export const Main: React.FC = () => {
@@ -40,7 +40,7 @@ export const Main: React.FC = () => {
                 <MainSidebarContent setIsNewUser={setIsNewUser} />
             </Sidebar>
 
-            {isNewUser ? <GettingStarted /> : <Ideas />}
+            {isNewUser ? <GettingStarted /> : <IdeasMainContent />}
         </div>
     </div>
 }

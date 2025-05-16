@@ -4,7 +4,7 @@ import ProductsList from "../ProductsList/ProductsList";
 import { ProductsLoader } from "../UI/Loader/ProductsLoader/ProductsLoader";
 
 
-export const Ideas = () => {
+export const IdeasMainContent = () => {
     const { productIdeas, isIdeasLoading, ideaError } = useIdeas();
 
     return (

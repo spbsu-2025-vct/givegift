@@ -14,21 +14,21 @@ const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
             {products && products.length === 0 ? (
                 <ResultsNotFound />
             ) : (
-                <div className={`${styles.idea_list} fadein slider`}>
-                    <span className={styles.found_ideas_header}>
+                <div className={`${styles.products_list} fadein slider`}>
+                    <span className={styles.products_list_header}>
                         {"По вашему запросу найдено"}
                     </span>
-                    <div className={styles.ideas}>
+                    <div className={styles.products}>
                         {products.map(
                             (
-                                idea,
+                                product,
                                 ind, // Имеем право юзать индекс в мапе как key, т.к. контент не будет удаляться/изменяться до нажатия на кнопку генерации, а при нажатии весь прошлый контент уйдет, что позволяет нам сказать, что такой key-статичен и уникален
                             ) => (
                                 <ProductCard
                                     key={ind}
-                                    market_link={idea.market_link}
-                                    title={idea.title}
-                                    img_link={idea.img_link}
+                                    market_link={product.market_link}
+                                    title={product.title}
+                                    img_link={product.img_link}
                                 />
                             ),
                         )}
