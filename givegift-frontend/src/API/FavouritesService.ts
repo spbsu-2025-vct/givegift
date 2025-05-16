@@ -11,7 +11,7 @@ export default class FavouritesService {
   }
 
   static async editFavouritesTag(favProduct: IFavProduct, newTag: string) {
-    return await axios.post("http://127.0.0.1:5000/favourites/edit_tag", { ...favProduct, newTag });
+    return await axios.post("http://127.0.0.1:5000/favourites/edit_tag", { favProduct, newTag });
   }
 
   // TODO: подумай над тем чтобы это стало get с параметром userID

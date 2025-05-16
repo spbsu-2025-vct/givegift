@@ -65,3 +65,20 @@
 .favButton:hover {
     background-color: rgba(255, 255, 255, 0.4) !important;
 }
+
+.bookmarkButton {
+    position: absolute !important;
+    top: 4px;
+    left: 4px;
+    z-index: 2;
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    border-radius: 50%;
+    color: rgba(0, 0, 0, 0.35);
+    transition: background-color 0.2s;
+}
+
+.bookmarkButton:hover {
+    background-color: rgba(255, 255, 255, 0.4) !important;
+}
