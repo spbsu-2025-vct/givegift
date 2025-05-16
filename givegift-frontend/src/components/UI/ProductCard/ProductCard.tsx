@@ -7,7 +7,6 @@ import {
   Box,
   IconButton,
   Popover,
-  Typography,
   TextField
 } from "@mui/material";
 
@@ -15,7 +14,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import EditIcon from "@mui/icons-material/Edit";
+import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from "@mui/icons-material/Check";
 
 import { useFavourites } from "../../../context/FavouritesContext/FavouritesContext";
@@ -92,37 +91,44 @@ const Product: React.FC<IProduct> = ({ title, img_link, market_link }) => {
             open={popoverOpen}
             anchorEl={anchorEl}
             onClose={handlePopoverClose}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
             transformOrigin={{ vertical: 'top', horizontal: 'left' }}
           >
-            <Box sx={{ p: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
-              {!isEditing ? (
-                <>
-                  <Typography variant="body2">
-                    {currentTag || "нет тега"}
-                  </Typography>
-                  <IconButton
-                    size="small"
-                    onClick={() => setIsEditing(true)}
-                  >
-                    <EditIcon fontSize="small" />
-                  </IconButton>
-                </>
-              ) : (
-                <>
-                  <TextField
-                    size="small"
-                    value={editedTag}
-                    onChange={(e) => setEditedTag(e.target.value)}
-                  />
+            <Box sx={{
+              padding: "10px 15px",
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '10px',
+              height: '40px'
+            }}>
+              <TextField
+                size="small"
+                value={editedTag}
+                onChange={(e) => setEditedTag(e.target.value)}
+                placeholder="нет тега"
+                disabled={!isEditing}
+                sx={{ maxWidth: '200px' }}
+              />
+              <Box>
+                {isEditing ? (
                   <IconButton
                     size="small"
                     onClick={handleSaveTag}
                   >
                     <CheckIcon fontSize="small" />
-                  </IconButton>
-                </>
-              )}
+                  </IconButton>)
+                  : (
+                    <IconButton
+                      size="small"
+                      onClick={() => setIsEditing(true)}
+                    >
+                      <EditIcon fontSize="small" />
+                    </IconButton>
+                  )
+                }
+
+              </Box>
             </Box>
           </Popover>
 
