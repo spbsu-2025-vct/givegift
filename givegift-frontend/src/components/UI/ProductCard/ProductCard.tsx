@@ -9,6 +9,7 @@ import { useFavourites } from "../../../context/FavouritesContext/FavouritesCont
 
 const Product: React.FC<IProduct> = ({ title, img_link, market_link }) => {
   const [loaded, setLoaded] = useState(false);
+  // TODO Нужно подтягивать из бд, есть ли у пользователя объект с такими характеристиками продуктами, а не говорить сразу false
   const [favourited, setFavourited] = useState(false);
   const { addToFavourites, removeFromFavourites } = useFavourites()
 
