@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
     IconButton,
     Popover,
     Box,
     TextField,
     Tooltip,
+    Autocomplete,
 } from "@mui/material";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import EditIcon from "@mui/icons-material/Edit";
 import CheckIcon from "@mui/icons-material/Check";
 import styles from "./TagButton.module.css";
+import { useFavourites } from "../../../../context/FavouritesContext/FavouritesContext";
 
 export interface TagButtonProps {
-    currentTag?: string;
+    currentTag: string;
     onSave: (newTag: string) => Promise<void>;
 }
 
@@ -22,6 +24,12 @@ const TagButton: React.FC<TagButtonProps> = ({ currentTag = "", onSave }) => {
     const open = Boolean(anchorEl);
     const [isEditing, setIsEditing] = useState(false);
     const [editedTag, setEditedTag] = useState(currentTag);
+    const { allUserFavourites } = useFavourites();
+    const allUserTags = useMemo(() => {
+        const tags = new Set<string>();
+        allUserFavourites.forEach(({ tag }) => tag && tags.add(tag));
+        return [...tags];
+    }, [allUserFavourites]);
 
     // keep local state in sync if parent tag changes
     useEffect(() => {
@@ -29,10 +37,14 @@ const TagButton: React.FC<TagButtonProps> = ({ currentTag = "", onSave }) => {
     }, [currentTag]);
 
     const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+        if (anchorEl) {
+            setEditedTag(currentTag);
+        }
         setAnchorEl(prev => (prev ? null : e.currentTarget));
         setIsEditing(false);
     };
     const handleClose = () => {
+        setEditedTag(currentTag);
         setAnchorEl(null);
         setIsEditing(false);
     };
@@ -70,13 +82,23 @@ const TagButton: React.FC<TagButtonProps> = ({ currentTag = "", onSave }) => {
                     gap: '10px',
                     height: '40px'
                 }}>
-                    <TextField
-                        size="small"
+                    <Autocomplete
+                        freeSolo
+                        disableClearable
+                        options={allUserTags}
                         value={editedTag}
-                        onChange={(e) => setEditedTag(e.target.value)}
-                        placeholder="нет тега"
+                        onChange={(_, newVal) => setEditedTag(newVal ?? "")}
+                        inputValue={editedTag}
+                        onInputChange={(_, newValue) => setEditedTag(newValue)}
                         disabled={!isEditing}
-                        sx={{ maxWidth: '200px' }}
+                        sx={{ width: 200 }}
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                size="small"
+                                placeholder="Тег отсутствует"
+                            />
+                        )}
                     />
                     <Box>
                         {isEditing ? (

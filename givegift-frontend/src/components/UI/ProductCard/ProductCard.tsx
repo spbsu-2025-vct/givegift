@@ -15,7 +15,7 @@ const Product: React.FC<IProduct> = ({ title, img_link, market_link }) => {
   // check if favourited and get its tag
   const favData = allUserFavourites.find(p => p.market_link === market_link) as IFavProduct | undefined;
   const favourited = Boolean(favData);
-  const currentTag = favData?.tag;
+  const currentTag = favData?.tag ?? "";
 
   const handleHeartClick = () => {
     if (favourited) {
