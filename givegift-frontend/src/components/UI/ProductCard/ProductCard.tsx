@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ProductCard.module.css";
 import MarketButton from "../Button/MarketButton/MarketButton";
 import type { IProduct, IFavProduct } from "../../../types";
@@ -24,6 +24,10 @@ const Product: React.FC<IProduct> = ({ title, img_link, market_link }) => {
       addToFavourites({ title, img_link, market_link });
     }
   };
+
+  useEffect(() => {
+    setLoaded(false);
+  }, [img_link]);
 
   return (
     <div className={styles.product}>

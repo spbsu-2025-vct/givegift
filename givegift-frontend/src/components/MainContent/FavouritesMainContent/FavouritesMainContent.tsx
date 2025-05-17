@@ -1,10 +1,19 @@
-import { useFavourites } from "../../../context/FavouritesContext/FavouritesContext";
 import { ResultsError } from "../../../pages/Error/ResultsError/ResultsError";
+import type { IFavProduct } from "../../../types";
 import ProductsList from "../../ProductsList/ProductsList";
 import { ProductsLoader } from "../../UI/Loader/ProductsLoader/ProductsLoader";
 
-export const FavouritesMainContent = () => {
-    const { isUserFavouritesLoading, userFavouritesError, allUserFavourites } = useFavourites()
+interface FavouritesMainContentProps {
+    isUserFavouritesLoading: boolean;
+    userFavouritesError: string;
+    userFavourites: IFavProduct[];
+}
+
+export const FavouritesMainContent: React.FC<FavouritesMainContentProps> = ({
+    isUserFavouritesLoading,
+    userFavouritesError,
+    userFavourites,
+}) => {
 
     return (
         isUserFavouritesLoading ? (
@@ -12,7 +21,7 @@ export const FavouritesMainContent = () => {
         ) : userFavouritesError ? (
             <ResultsError errorMsg={userFavouritesError} />
         ) : (
-            <ProductsList products={allUserFavourites} />
+            <ProductsList products={userFavourites} />
         )
     );
 };

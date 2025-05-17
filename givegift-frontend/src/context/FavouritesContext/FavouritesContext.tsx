@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState, type ReactNode } from "react"
+import React, { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react"
 import type { IFavProduct, Tag } from "../../types"
 import { useFetching } from "../../hooks/useFetching"
 import { useSupabase } from "../SupabaseContext/SupabaseContext"
@@ -13,6 +13,7 @@ interface FavouritesContextType {
     isUserFavouritesLoading: boolean
     userFavouritesError: string
     allUserFavourites: IFavProduct[]
+    allUserTags: Tag[]
 }
 
 export const FavouritesContext = createContext<FavouritesContextType | null>(null)
@@ -50,6 +51,13 @@ export const FavouritesContextProvider: React.FC<{ children: ReactNode }> = ({
         }
     )
 
+    const allUserTags = useMemo(() => {
+        const tags = new Set<Tag>();
+        allUserFavourites.forEach(({ tag }) => tag && tags.add(tag));
+        return [...tags];
+    }, [allUserFavourites]);
+
+
     useEffect(() => {
         if (userID) {
             fetchUserFavourites().catch(console.error)
@@ -64,6 +72,7 @@ export const FavouritesContextProvider: React.FC<{ children: ReactNode }> = ({
         isUserFavouritesLoading,
         userFavouritesError,
         allUserFavourites,
+        allUserTags
     }
 
     return (

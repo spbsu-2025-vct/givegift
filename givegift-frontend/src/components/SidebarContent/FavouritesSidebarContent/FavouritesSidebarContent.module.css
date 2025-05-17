@@ -1,0 +1,11 @@
+.tag_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 10px;
+}
+
+.favourites_sidebar_content {
+    display: grid;
+    align-content: start;
+    grid-row-gap: 20px;
+}

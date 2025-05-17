@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import {
     IconButton,
     Popover,
@@ -25,12 +25,7 @@ const TagButton: React.FC<TagButtonProps> = ({ currentTag, onSave }) => {
     const open = Boolean(anchorEl);
     const [isEditing, setIsEditing] = useState(false);
     const [editedTag, setEditedTag] = useState(currentTag);
-    const { allUserFavourites } = useFavourites();
-    const allUserTags = useMemo(() => {
-        const tags = new Set<Tag>();
-        allUserFavourites.forEach(({ tag }) => tag && tags.add(tag));
-        return [...tags];
-    }, [allUserFavourites]);
+    const { allUserTags } = useFavourites();
 
     // keep local state in sync if parent tag changes
     useEffect(() => {
