@@ -1,9 +1,11 @@
 import styles from "./Tag.module.css";
 import x_btn from "../../../assets/x_btn.png";
 import type React from "react";
+import type { Tag as TagType } from "../../../types";
+
 
 interface TagProps {
-  tagName: string;
+  tagName: TagType;
   remove: (tag: string) => void;
   isRemovable: boolean;
 }

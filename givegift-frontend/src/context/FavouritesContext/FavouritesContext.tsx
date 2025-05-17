@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState, type ReactNode } from "react"
-import type { IFavProduct } from "../../types"
+import type { IFavProduct, Tag } from "../../types"
 import { useFetching } from "../../hooks/useFetching"
 import { useSupabase } from "../SupabaseContext/SupabaseContext"
 import FavouritesService from "../../API/FavouritesService"
@@ -8,7 +8,7 @@ import FavouritesService from "../../API/FavouritesService"
 interface FavouritesContextType {
     addToFavourites: (favProduct: Omit<IFavProduct, "userID">) => Promise<void>
     removeFromFavourites: (favProduct: Omit<IFavProduct, "userID">) => Promise<void>
-    editFavouritesTag: (favProduct: Omit<IFavProduct, "userID">, newTag: string) => Promise<void>
+    editFavouritesTag: (favProduct: Omit<IFavProduct, "userID">, newTag: Tag) => Promise<void>
     fetchUserFavourites: () => Promise<void>
     isUserFavouritesLoading: boolean
     userFavouritesError: string
@@ -43,7 +43,7 @@ export const FavouritesContextProvider: React.FC<{ children: ReactNode }> = ({
     })
 
     const [editFavouritesTag, ,] = useFetching(
-        async (favProduct: Omit<IFavProduct, "userID">, newTag: string) => {
+        async (favProduct: Omit<IFavProduct, "userID">, newTag: Tag) => {
             if (!userID) throw new Error("No user logged in")
             await FavouritesService.editFavouritesTag({ ...favProduct, userID }, newTag)
             await fetchUserFavourites()

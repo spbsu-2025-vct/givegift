@@ -13,10 +13,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import CheckIcon from "@mui/icons-material/Check";
 import styles from "./TagButton.module.css";
 import { useFavourites } from "../../../../context/FavouritesContext/FavouritesContext";
+import type { Tag } from "../../../../types";
 
 export interface TagButtonProps {
-    currentTag: string;
-    onSave: (newTag: string) => Promise<void>;
+    currentTag: Tag;
+    onSave: (newTag: Tag) => Promise<void>;
 }
 
 const TagButton: React.FC<TagButtonProps> = ({ currentTag, onSave }) => {
@@ -26,7 +27,7 @@ const TagButton: React.FC<TagButtonProps> = ({ currentTag, onSave }) => {
     const [editedTag, setEditedTag] = useState(currentTag);
     const { allUserFavourites } = useFavourites();
     const allUserTags = useMemo(() => {
-        const tags = new Set<string>();
+        const tags = new Set<Tag>();
         allUserFavourites.forEach(({ tag }) => tag && tags.add(tag));
         return [...tags];
     }, [allUserFavourites]);

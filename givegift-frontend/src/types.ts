@@ -6,7 +6,7 @@ export interface IProduct {
 
 export interface IFavProduct extends IProduct {
     userID: string
-    tag?: string
+    tag?: Tag
 }
 
 export interface IUserIdeaProperties {
@@ -15,3 +15,4 @@ export interface IUserIdeaProperties {
 }
 
 export type Interest = string;
+export type Tag = string;
