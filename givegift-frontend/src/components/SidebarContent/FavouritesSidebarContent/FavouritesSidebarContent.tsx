@@ -1,19 +1,21 @@
 import { InputAdornment, TextField } from "@mui/material";
 import type { Tag as TagType } from "../../../types";
 import { SidebarContentBlock } from "../../SidebarContentBlock/SidebarContentBlock";
-import { Tag } from "../../UI/Tag/Tag";
 import styles from "./FavouritesSidebarContent.module.css";
 import SearchIcon from "@mui/icons-material/Search";
+import TagList from "../../TagList/TagList";
 
 interface FavouritesSidebarContentProps {
+    allUserTags: TagType[];
     currentTags: TagType[];
+    addTags: (tags: TagType[]) => void;
     removeTag: (tag: TagType) => void;
     searchQuery: string;
     setSearchQuery: (query: string) => void;
 }
 
 export const FavouritesSidebarContent: React.FC<FavouritesSidebarContentProps> = ({
-    currentTags, removeTag, searchQuery, setSearchQuery
+    allUserTags, currentTags, addTags, removeTag, searchQuery, setSearchQuery
 }) => {
 
     return (
@@ -39,16 +41,14 @@ export const FavouritesSidebarContent: React.FC<FavouritesSidebarContentProps> =
                 />
             </SidebarContentBlock>
             <SidebarContentBlock title="Коллекции">
-                <div className={`${styles.tag_list} slider`}>
-                    {currentTags.map((curr_tag) => (
-                        <Tag
-                            key={curr_tag}
-                            isRemovable={true}
-                            remove={removeTag}
-                            tagName={curr_tag}
-                        />
-                    ))}
-                </div>
+                <TagList
+                    userTags={currentTags}
+                    allTags={allUserTags}
+                    removeTag={removeTag}
+                    addTags={addTags}
+                    dialogTitle="Выберите теги"
+                    textFieldLabel="Теги"
+                />
             </SidebarContentBlock>
         </div>
     );

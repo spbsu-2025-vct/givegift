@@ -2,7 +2,7 @@ import { type ChangeEvent } from "react";
 import styles from "./IdeasSettings.module.css";
 import { SidebarContentBlock } from "../SidebarContentBlock/SidebarContentBlock";
 import RangeSlider from "../UI/RangeSlider/RangeSlider";
-import InterestList from "../InterestList/InterestList";
+import TagList from "../TagList/TagList";
 import { useInterests } from "../../context/InterestContext/InterestContext";
 import type { Interest } from "../../types";
 
@@ -12,7 +12,7 @@ interface IdeasSettingsProps {
 }
 
 const CustomSettings: React.FC<IdeasSettingsProps> = ({ priceRangeValue, handlePriceRangeChange }) => {
-    const { userInterests, setUserInterests } = useInterests();
+    const { userInterests, setUserInterests, allInterests } = useInterests();
 
     const removeInterest = (interest: Interest) => {
         setUserInterests(userInterests.filter((i) => i !== interest));
@@ -25,7 +25,11 @@ const CustomSettings: React.FC<IdeasSettingsProps> = ({ priceRangeValue, handleP
     return (
         <div className={styles.custom_settings}>
             <SidebarContentBlock title={"Интересы"}>
-                <InterestList removeInterest={removeInterest} addInterests={addInterests} />
+                <TagList
+                    userTags={userInterests} allTags={allInterests}
+                    removeTag={removeInterest} addTags={addInterests}
+                    dialogTitle={"Выберите интересы"} textFieldLabel={"Интересы"}
+                />
             </SidebarContentBlock>
 
             <SidebarContentBlock title={"Цена"}>

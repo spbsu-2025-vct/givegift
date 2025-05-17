@@ -19,13 +19,11 @@ export const Favourites = () => {
     const [deletedTags, setDeletedTags] = useState<Tag[]>([]);
     const [searchQuery, setSearchQuery] = useState<string>("");
 
-    // 1) Filter out deleted tags
     const currentTags = useMemo(
         () => allUserTags.filter((tag) => !deletedTags.includes(tag)),
         [allUserTags, deletedTags]
     );
 
-    // 2) Filter out deleted‐tagged products
     const byTag = useMemo(
         () =>
             allUserFavourites.filter(
@@ -34,7 +32,6 @@ export const Favourites = () => {
         [allUserFavourites, deletedTags]
     );
 
-    // 3) Then filter that set by your search string
     const filteredFavourites = useMemo(
         () =>
             byTag.filter((fav) =>
@@ -47,6 +44,12 @@ export const Favourites = () => {
         setDeletedTags((tags) => [...tags, tag]);
     };
 
+    const addTags = (tagsToAdd: Tag[]) => {
+        setDeletedTags((prev) =>
+            prev.filter((deleted) => !tagsToAdd.includes(deleted))
+        );
+    };
+
     return (
         <div className="app-wrapper">
             <Header />
@@ -54,15 +57,17 @@ export const Favourites = () => {
                 <Sidebar
                     header={
                         <div className={styles.main_header}>
-                            <span>Фильтры избранного</span>
+                            <span>{"Избранное"}</span>
                         </div>
                     }
                 >
                     <FavouritesSidebarContent
                         currentTags={currentTags}
                         removeTag={removeTag}
+                        addTags={addTags}
                         searchQuery={searchQuery}
                         setSearchQuery={setSearchQuery}
+                        allUserTags={allUserTags}
                     />
                 </Sidebar>
 
