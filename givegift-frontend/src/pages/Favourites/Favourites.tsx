@@ -6,7 +6,8 @@ import { FavouritesMainContent } from "../../components/MainContent/FavouritesMa
 import { useFavourites } from "../../context/FavouritesContext/FavouritesContext";
 import { useMemo, useState } from "react";
 import type { Tag } from "../../types";
-
+import { IconButton, Tooltip } from "@mui/material";
+import SellIcon from '@mui/icons-material/Sell';
 
 export const Favourites = () => {
     const {
@@ -18,6 +19,7 @@ export const Favourites = () => {
 
     const [deletedTags, setDeletedTags] = useState<Tag[]>([]);
     const [searchQuery, setSearchQuery] = useState<string>("");
+    const [showFavsWithEmptyTags, setShowFavsWithEmptyTags] = useState(true);
 
     const currentTags = useMemo(
         () => allUserTags.filter((tag) => !deletedTags.includes(tag)),
@@ -27,9 +29,10 @@ export const Favourites = () => {
     const byTag = useMemo(
         () =>
             allUserFavourites.filter(
-                (fav) => fav.tag && !deletedTags.includes(fav.tag)
+                (fav) => fav.tag && !deletedTags.includes(fav.tag) ||
+                    showFavsWithEmptyTags
             ),
-        [allUserFavourites, deletedTags]
+        [allUserFavourites, deletedTags, showFavsWithEmptyTags]
     );
 
     const filteredFavourites = useMemo(
@@ -58,6 +61,14 @@ export const Favourites = () => {
                     header={
                         <div className={styles.main_header}>
                             <span>{"Избранное"}</span>
+                            <Tooltip
+                                title={`${showFavsWithEmptyTags ? "Не показывать" : "Показывать"} товары с пустыми тегами`}>
+                                <IconButton onClick={() => { setShowFavsWithEmptyTags(!showFavsWithEmptyTags) }}>
+                                    <SellIcon
+                                        sx={{ color: showFavsWithEmptyTags ? "#fc4d17" : "grey" }}
+                                    />
+                                </IconButton>
+                            </Tooltip>
                         </div>
                     }
                 >

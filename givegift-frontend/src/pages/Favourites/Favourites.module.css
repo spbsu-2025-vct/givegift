@@ -1,5 +1,5 @@
 .main_header {
-    display: grid;
+    display: flex;
     align-items: center;
     row-gap: 5px;
 }

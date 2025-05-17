@@ -27,10 +27,10 @@ export const Main: React.FC = () => {
                     <div className={styles.main_header}>
                         <span>Фильтры идей</span>
                         <Tooltip
-                            title={"Не показывать / показывать товары 18+"}>
+                            title={`${isAdult ? "Не показывать" : "Показывать"} товары 18+`}>
                             <IconButton onClick={() => { setIsAdult(!isAdult) }}>
                                 <NoAdultContentRoundedIcon
-                                    sx={{ color: isAdult ? "grey" : "#fc4d17" }}
+                                    sx={{ color: isAdult ? "#fc4d17" : "grey" }}
                                 />
                             </IconButton>
                         </Tooltip>
