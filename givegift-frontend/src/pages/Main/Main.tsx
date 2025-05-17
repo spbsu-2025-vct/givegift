@@ -9,7 +9,7 @@ import { IconButton, Tooltip } from "@mui/material";
 import { MainSidebarContent } from "../../components/SidebarContent/MainSidebarContent/MainSidebarContent";
 import { useIdeas } from "../../context/IdeasContext/IdeasContext";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { IdeasMainContent } from "../../components/IdeasMainContent/IdeasMainContent";
+import { IdeasMainContent } from "../../components/MainContent/IdeasMainContent/IdeasMainContent";
 import { useInterests } from "../../context/InterestContext/InterestContext";
 
 export const Main: React.FC = () => {

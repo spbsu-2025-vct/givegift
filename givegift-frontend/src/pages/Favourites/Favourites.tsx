@@ -2,7 +2,7 @@ import { Header } from "../../components/Header/Header";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import styles from "./Favourites.module.css";
 import { FavouritesSidebarContent } from "../../components/SidebarContent/FavouritesSidebarContent/FavouritesSidebarContent";
-import { FavouritesMainContent } from "../../components/FavouritesMainContent/FavouritesMainContent";
+import { FavouritesMainContent } from "../../components/MainContent/FavouritesMainContent/FavouritesMainContent";
 
 // TODO: sidebar
 export const Favourites = () => {

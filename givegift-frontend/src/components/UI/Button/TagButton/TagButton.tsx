@@ -19,7 +19,7 @@ export interface TagButtonProps {
     onSave: (newTag: string) => Promise<void>;
 }
 
-const TagButton: React.FC<TagButtonProps> = ({ currentTag = "", onSave }) => {
+const TagButton: React.FC<TagButtonProps> = ({ currentTag, onSave }) => {
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
     const open = Boolean(anchorEl);
     const [isEditing, setIsEditing] = useState(false);
