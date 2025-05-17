@@ -7,15 +7,14 @@ export default class FavouritesService {
   }
 
   static async removeFromFavourites(favProduct: IFavProduct) {
-    return await axios.post("http://127.0.0.1:5000/favourites/remove", favProduct);
+    return await axios.delete("http://127.0.0.1:5000/favourites/remove", { params: { userID: favProduct.userID, market_link: favProduct.market_link } });
   }
 
   static async editFavouritesTag(favProduct: IFavProduct, newTag: string) {
-    return await axios.post("http://127.0.0.1:5000/favourites/edit_tag", { favProduct, newTag });
+    return await axios.put("http://127.0.0.1:5000/favourites/edit_tag", { favProduct, newTag });
   }
 
-  // TODO: подумай над тем чтобы это стало get с параметром userID
   static async fetchUserFavourites(userID: string) {
-    return await axios.post("http://127.0.0.1:5000/favourites/fetch", { userID });
+    return await axios.get("http://127.0.0.1:5000/favourites/fetch", { params: { userID } });
   }
 }

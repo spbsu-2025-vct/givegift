@@ -36,7 +36,7 @@ class FavouritesController {
     }
 
     async removeFavourite(req, res, next) {
-        const { userID, market_link } = req.body
+        const { userID, market_link } = req.query
 
         if (!userID || !market_link) {
             return next(ApiError.badRequest('Missing required fields: userID or market_link'))
@@ -100,7 +100,7 @@ class FavouritesController {
     }
 
     async fetchUserFavourites(req, res, next) {
-        const { userID } = req.body
+        const userID = req.query.userID
         if (!userID) {
             return next(ApiError.badRequest('Missing required field: userID'))
         }

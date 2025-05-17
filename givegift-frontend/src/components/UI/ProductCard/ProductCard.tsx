@@ -8,7 +8,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useFavourites } from "../../../context/FavouritesContext/FavouritesContext";
 import TagButton from "../Button/TagButton/TagButton";
 
-const Product: React.FC<IProduct> = ({ title, img_link, market_link }) => {
+const ProductCard: React.FC<IProduct> = ({ title, img_link, market_link }) => {
   const [loaded, setLoaded] = useState(false);
   const { addToFavourites, removeFromFavourites, editFavouritesTag, allUserFavourites } = useFavourites();
 
@@ -85,4 +85,4 @@ const Product: React.FC<IProduct> = ({ title, img_link, market_link }) => {
   );
 };
 
-export default Product;
+export default ProductCard;
