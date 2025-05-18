@@ -14,10 +14,12 @@ GiveGift - ваш умный помощник в этом вопросе!
 ## Демо
 
 Генерация идей:
-![](demo/images/main.gif)
+
+https://github.com/user-attachments/assets/8ee3ea5d-558c-42eb-a8a5-2d2262ed3307
 
 Избранное:
-![](demo/images/favourites.gif)
+
+https://github.com/user-attachments/assets/34cdc54b-8fd9-44b5-a215-2182affb0240
 
 ## Облачная платформа и стек
 * В качестве стека разработки будет выбран **PERN stack** _(PostgreSQL + express + React js + node.js)_:
