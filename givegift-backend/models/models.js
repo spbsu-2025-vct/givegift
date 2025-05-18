@@ -1,12 +1,12 @@
 import sequelize from '../db.js'
 import { DataTypes } from 'sequelize'
 
-export const Interest = sequelize.define('interest', {
+export const Interests = sequelize.define('interests', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, unique: true }
 })
 
-export const Product = sequelize.define('product', {
+export const Products = sequelize.define('products', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -27,7 +27,7 @@ export const Product = sequelize.define('product', {
     }
 })
 
-export const Favourite = sequelize.define('favourite', {
+export const Favourites = sequelize.define('favourites', {
     user_id: {
         type: DataTypes.UUID,
         allowNull: false
@@ -37,7 +37,7 @@ export const Favourite = sequelize.define('favourite', {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: Product,
+            model: Products,
             key: 'id'
         },
         onDelete: 'CASCADE'  // if a product is deleted, its favourites go too
@@ -50,5 +50,5 @@ export const Favourite = sequelize.define('favourite', {
 )
 
 // Relations
-Product.hasMany(Favourite, { foreignKey: 'product_id', onDelete: 'CASCADE' })
-Favourite.belongsTo(Product, { foreignKey: 'product_id', onDelete: 'CASCADE' })
+Products.hasMany(Favourites, { foreignKey: 'product_id', onDelete: 'CASCADE' })
+Favourites.belongsTo(Products, { foreignKey: 'product_id', onDelete: 'CASCADE' })

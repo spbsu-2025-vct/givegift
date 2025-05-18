@@ -1,4 +1,4 @@
-import { Product, Favourite } from '../models/models.js'
+import { Products, Favourites } from '../models/models.js'
 import ApiError from '../error/ApiError.js'
 
 class FavouritesController {
@@ -10,13 +10,13 @@ class FavouritesController {
 
         try {
             // ensure product exists or create it
-            const [product] = await Product.findOrCreate({
+            const [product] = await Products.findOrCreate({
                 where: { market_link },
                 defaults: { title, img_link }
             })
 
             // prevent duplicates
-            const [fav, created] = await Favourite.findOrCreate({
+            const [fav, created] = await Favourites.findOrCreate({
                 where: {
                     user_id: userID,
                     product_id: product.id
@@ -43,12 +43,12 @@ class FavouritesController {
         }
 
         try {
-            const product = await Product.findOne({ where: { market_link } })
+            const product = await Products.findOne({ where: { market_link } })
             if (!product) {
                 return next(ApiError.badRequest('Product not found'))
             }
 
-            const deletedCount = await Favourite.destroy({
+            const deletedCount = await Favourites.destroy({
                 where: {
                     user_id: userID,
                     product_id: product.id
@@ -73,12 +73,12 @@ class FavouritesController {
         }
 
         try {
-            const product = await Product.findOne({ where: { market_link: favProduct.market_link } })
+            const product = await Products.findOne({ where: { market_link: favProduct.market_link } })
             if (!product) {
                 return next(ApiError.badRequest('Product not found'))
             }
 
-            const [updatedRows] = await Favourite.update(
+            const [updatedRows] = await Favourites.update(
                 { tag: newTag },
                 {
                     where: {
@@ -106,7 +106,7 @@ class FavouritesController {
         }
 
         try {
-            const favs = await Favourite.findAll({
+            const favs = await Favourites.findAll({
                 where: { user_id: userID },
                 include: [{
                     model: Product,

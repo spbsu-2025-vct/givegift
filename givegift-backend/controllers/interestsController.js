@@ -1,10 +1,10 @@
-import { Interest } from '../models/models.js'
+import { Interests } from '../models/models.js'
 import ApiError from '../error/ApiError.js'
 
 class InterestController {
     async get_all_interests(_req, res, next) {
         try {
-            const interests = await Interest.findAll({
+            const interests = await Interests.findAll({
                 attributes: ['name'],
                 raw: true
             })
