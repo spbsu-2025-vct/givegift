@@ -25,7 +25,7 @@ export const FavouritesSidebarContent: React.FC<FavouritesSidebarContentProps> =
                 <TextField
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Поиск продуктов"
+                    placeholder="Поиск товаров"
                     variant="outlined"
                     size="small"
                     fullWidth
