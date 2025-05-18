@@ -4,6 +4,6 @@ const router = Router()
 
 router.post('/add', favouritesController.addFavourite)
 router.delete('/remove', favouritesController.removeFavourite)
-router.put('/edit_tag', favouritesController.editFavouriteTag)
+router.patch('/edit_tag', favouritesController.editFavouriteTag)
 router.get('/fetch', favouritesController.fetchUserFavourites)
 export default router

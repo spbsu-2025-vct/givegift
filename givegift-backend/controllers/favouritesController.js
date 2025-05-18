@@ -67,22 +67,24 @@ class FavouritesController {
     }
 
     async editFavouriteTag(req, res, next) {
-        const { favProduct, newTag } = req.body
-        if (!favProduct?.userID || !favProduct?.market_link || newTag == null) {
-            return next(ApiError.badRequest('Missing required fields: favProduct or newTag'))
+        const { userID, market_link } = req.query
+        const { tag } = req.body
+
+        if (!userID || !market_link || !tag) {
+            return next(ApiError.badRequest('Missing at least one of the required fields: userID, market_link, title, img_link, tag'))
         }
 
         try {
-            const product = await Products.findOne({ where: { market_link: favProduct.market_link } })
+            const product = await Products.findOne({ where: { market_link: market_link } })
             if (!product) {
                 return next(ApiError.badRequest('Product not found'))
             }
 
             const [updatedRows] = await Favourites.update(
-                { tag: newTag },
+                { tag: tag },
                 {
                     where: {
-                        user_id: favProduct.userID,
+                        user_id: userID,
                         product_id: product.id
                     }
                 }
@@ -109,7 +111,7 @@ class FavouritesController {
             const favs = await Favourites.findAll({
                 where: { user_id: userID },
                 include: [{
-                    model: Product,
+                    model: Products,
                     attributes: ['market_link', 'title', 'img_link']
                 }]
             })
