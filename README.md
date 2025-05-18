@@ -14,10 +14,10 @@ GiveGift - ваш умный помощник в этом вопросе!
 ## Демо
 
 Генерация идей:
-<video controls src="demo/videos/main.mp4" title="Main"></video>
+![](demo/images/main.gif)
 
 Избранное:
-<video controls src="demo/videos/favourites.mp4" title="Favourites"></video>
+![](demo/images/favourites.gif)
 
 ## Облачная платформа и стек
 * В качестве стека разработки будет выбран **PERN stack** _(PostgreSQL + express + React js + node.js)_:
