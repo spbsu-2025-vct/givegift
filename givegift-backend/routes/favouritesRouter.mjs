@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import favouritesController from '../controllers/favouritesController.js'
+import favouritesController from '../controllers/favouritesController.mjs'
 const router = Router()
 
 router.post('/add', favouritesController.addFavourite)

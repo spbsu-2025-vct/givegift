@@ -1,5 +1,5 @@
-import { Interests } from '../models/models.js'
-import ApiError from '../error/ApiError.js'
+import { Interests } from '../models/models.mjs'
+import ApiError from '../error/ApiError.mjs'
 
 class InterestController {
     async get_all_interests(_req, res, next) {

@@ -1,7 +1,7 @@
-import { generateSystemPrompt, generateUserPrompt } from "../utils/prompts.js";
-import FireworksAIService from "../API/FireworksAIService.js";
-import { getProductInfo } from "../utils/WBParser.js";
-import ApiError from '../error/ApiError.js';
+import { generateSystemPrompt, generateUserPrompt } from "../utils/prompts.mjs";
+import FireworksAIService from "../API/FireworksAIService.mjs";
+import { getProductInfo } from "../utils/WBParser.mjs";
+import ApiError from '../error/ApiError.mjs';
 
 class IdeasController {
     async generateIdeas(req, res, next) {

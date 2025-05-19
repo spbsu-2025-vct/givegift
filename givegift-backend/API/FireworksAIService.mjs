@@ -1,4 +1,3 @@
-
 export default class FireworksAIService {
 
     static async createChatCompletion(systemPrompt, userPrompt, model = "accounts/fireworks/models/qwen3-30b-a3b") {

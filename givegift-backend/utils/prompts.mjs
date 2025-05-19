@@ -1,4 +1,4 @@
-import { NUM_OF_GENERATED_IDEAS } from './constants.js'
+import { NUM_OF_GENERATED_IDEAS } from './constants.mjs'
 
 export const generateSystemPrompt = () => {
   return `Вы — ИИ-ассистент, специализирующийся на подборе подарков.

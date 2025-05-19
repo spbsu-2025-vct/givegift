@@ -1,4 +1,4 @@
-import sequelize from '../db.js'
+import sequelize from '../db.mjs'
 import { DataTypes } from 'sequelize'
 
 export const Interests = sequelize.define('interests', {

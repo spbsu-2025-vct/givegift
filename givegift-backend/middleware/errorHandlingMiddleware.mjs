@@ -1,5 +1,4 @@
-
-import ApiError from '../error/ApiError.js'
+import ApiError from '../error/ApiError.mjs'
 
 export default function (err, req, res, next) {
     if (err instanceof ApiError) {

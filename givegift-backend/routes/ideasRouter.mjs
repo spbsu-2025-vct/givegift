@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import ideasController from '../controllers/ideasController.js'
+import ideasController from '../controllers/ideasController.mjs'
 const router = Router()
 
 router.post('/generate', ideasController.generateIdeas)

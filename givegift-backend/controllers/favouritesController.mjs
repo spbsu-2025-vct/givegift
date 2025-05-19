@@ -1,5 +1,5 @@
-import { Products, Favourites } from '../models/models.js'
-import ApiError from '../error/ApiError.js'
+import { Products, Favourites } from '../models/models.mjs'
+import ApiError from '../error/ApiError.mjs'
 
 class FavouritesController {
     async addFavourite(req, res, next) {
