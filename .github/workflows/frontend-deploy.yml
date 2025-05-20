@@ -1,6 +1,6 @@
 name: CI/CD Frontend Pipeline for GiveGift
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
