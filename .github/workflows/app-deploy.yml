@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: backend-coverage
-          path: coverage
+          path: givegift-backend/coverage
 
   frontend-tests:
     name: Frontend Tests & Build
@@ -71,4 +71,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: frontend-build
-          path: build
+          path: givegift-frontend/build
