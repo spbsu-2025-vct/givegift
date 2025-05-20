@@ -19,11 +19,3 @@ export const checkZoom = (minScale: number, maxScale: number, newScale: number) 
   }
   return newScale
 };
-
-export const isAuthError = (error: { status: number; }) => {
-  return error && error.status === 401;
-};
-
-export const isObjectEmpty = (object: {}) => {
-  return Object.keys(object).length === 0;
-};
