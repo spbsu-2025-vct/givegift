@@ -12,7 +12,6 @@ class InterestController {
             const names = interests.map(i => i.name)
             return res.json(names)
         } catch (err) {
-            console.error(err)
             return next(ApiError.internal('Failed to fetch interests'))
         }
     }

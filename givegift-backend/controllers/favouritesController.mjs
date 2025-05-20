@@ -5,7 +5,7 @@ class FavouritesController {
     async addFavourite(req, res, next) {
         const { userID, market_link, title, img_link, tag } = req.body
         if (!userID || !market_link || !title || !img_link) {
-            return next(ApiError.badRequest('Missing at least one of the required fields: userID, market_link, title, img_link'))
+            return next(ApiError.badRequest('Invalid payload: missing at least one of the required fields: userID, market_link, title, img_link'))
         }
 
         try {
@@ -30,7 +30,6 @@ class FavouritesController {
 
             return res.status(201).json(fav)
         } catch (err) {
-            console.error(err)
             return next(ApiError.internal('Unable to add to favourites'))
         }
     }
@@ -61,7 +60,6 @@ class FavouritesController {
 
             return res.json({ message: 'Removed from favourites' })
         } catch (err) {
-            console.error(err)
             return next(ApiError.internal('Unable to remove from favourites'))
         }
     }
@@ -96,7 +94,6 @@ class FavouritesController {
 
             return res.json({ message: 'Tag updated' })
         } catch (err) {
-            console.error(err)
             return next(ApiError.internal('Unable to update favourite tag'))
         }
     }
@@ -126,7 +123,6 @@ class FavouritesController {
 
             return res.json(result)
         } catch (err) {
-            console.error(err)
             return next(ApiError.internal('Unable to fetch favourites'))
         }
     }

@@ -1,6 +1,6 @@
 import { generateSystemPrompt, generateUserPrompt } from "../utils/prompts.mjs";
 import FireworksAIService from "../API/FireworksAIService.mjs";
-import { getProductInfo } from "../utils/WBParser.mjs";
+import { getProductInfo } from "../parser/WBParser.mjs";
 import ApiError from '../error/ApiError.mjs';
 
 class IdeasController {
@@ -12,7 +12,7 @@ class IdeasController {
             typeof isAdult !== 'boolean' || !Array.isArray(interests)
         ) {
             return next(ApiError.badRequest(
-                'Invalid payload: price_range (array of two numbers), is_adult (boolean), and interests (array) are required'
+                'Invalid payload: missing at least one of the required fields: price_range, is_adult, interests'
             ));
         }
 
@@ -48,7 +48,6 @@ class IdeasController {
 
             return res.json(data);
         } catch (err) {
-            console.error(err);
             return next(ApiError.internal('Failed to generate gift ideas'));
         }
     }
