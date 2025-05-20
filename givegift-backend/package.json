@@ -10,7 +10,7 @@
     "start": "node index.mjs",
     "dev": "nodemon index.mjs",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "@adminjs/express": "^6.1.1",
