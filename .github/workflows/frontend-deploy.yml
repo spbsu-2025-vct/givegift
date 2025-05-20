@@ -1,4 +1,4 @@
-name: CI/CD Backend Pipeline for GiveGift
+name: CI/CD Frontend Pipeline for GiveGift
 
 on: [push]
 
