@@ -36,8 +36,9 @@ jobs:
         with:
           name: backend-coverage
           path: givegift-backend/coverage
-          
+
   build:
+    needs: test
     runs-on: ubuntu-latest
     defaults:
       run:
