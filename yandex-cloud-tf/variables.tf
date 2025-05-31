@@ -1,0 +1,56 @@
+variable "yc_folder_id" {
+  description = "The ID of the Yandex Cloud folder in which to create resources."
+  type        = string
+}
+
+variable "yc_cloud_id" {
+  description = "The ID of the Yandex Cloud to use."
+  type        = string
+}
+
+variable "yc_zone" {
+  description = "The availability zone to launch the VM in (default: ru-central1-a)."
+  type        = string
+  default     = "ru-central1-a"
+}
+
+variable "yc_token" {
+  description = "OAuth token or service-account key file content for the Yandex provider."
+  type        = string
+  sensitive   = true
+}
+
+variable "vm_name" {
+  description = "The name of the Compute instance to create."
+  type        = string
+  default     = "terraform-vm"
+}
+
+variable "vm_platform_id" {
+  description = "The platform ID or image family for the VM (default: ubuntu-2204-lts)."
+  type        = string
+  default     = "ubuntu-2204-lts"
+}
+
+variable "vm_memory" {
+  description = "Memory size in MB for the VM (e.g. 2 * 1024 for 2 GB)."
+  type        = number
+  default     = 2048
+}
+
+variable "vm_cores" {
+  description = "Number of CPU cores for the VM."
+  type        = number
+  default     = 2
+}
+
+variable "public_ssh_key" {
+  description = "Your SSH public key to provision into ~/.ssh/authorized_keys."
+  type        = string
+}
+
+variable "network_cidr" {
+  description = "CIDR block for the VPC subnet."
+  type        = string
+  default     = "10.0.0.0/24"
+}

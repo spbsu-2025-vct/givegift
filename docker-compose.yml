@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  # Postgres database service
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: givegift
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  # Backend service
+  backend:
+    build:
+      context: ./givegift-backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ./givegift-backend/.env
+    environment:
+      DB_NAME: givegift
+      DB_USER: postgres
+      DB_PASSWORD: password
+
+      DB_HOST: db
+      DB_PORT: 5432
+      PORT: 5000
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+
+  # Frontend service (built with Vite + Nginx)
+  frontend:
+    build:
+      context: ./givegift-frontend
+      dockerfile: Dockerfile
+      args:
+        SUPABASE_URL: "https://urvlzbwtoshzbckulhlg.supabase.co"
+        SUPABASE_PUBLIC_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVydmx6Ynd0b3NoemJja3VsaGxnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwMjkyODMsImV4cCI6MjA2MTYwNTI4M30.fDcZpqsi-AQqcJyMnvansBCaVeQAcJkkbGdrdaeFsCQ"
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+
+volumes:
+  db-data:
