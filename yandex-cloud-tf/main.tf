@@ -1,4 +1,6 @@
+//
 // Terraform configuration
+//
 terraform {
   required_providers {
     yandex = {
@@ -102,4 +104,19 @@ resource "yandex_compute_disk" "boot-disk" {
   size     = 20
   zone     = var.yc_zone
   image_id = var.vm_platform_id
+}
+
+
+// 
+// Yandex container registry
+//
+
+// Create a single Container Registry namespace with repository in it
+resource "yandex_container_registry" "registry" {
+  name      = var.registry_name
+  folder_id = var.yc_folder_id
+}
+
+resource "yandex_container_repository" "givegift_repo" {
+  name = "${yandex_container_registry.registry.id}/givegift"
 }

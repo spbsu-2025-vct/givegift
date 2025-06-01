@@ -54,3 +54,9 @@ variable "network_cidr" {
   type        = string
   default     = "10.0.0.0/24"
 }
+
+variable "registry_name" {
+  description = "Name to use for your Yandex Container Registry."
+  type        = string
+  default     = "givegift-registry"
+}
