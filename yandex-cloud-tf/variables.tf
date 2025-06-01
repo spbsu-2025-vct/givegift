@@ -33,13 +33,13 @@ variable "vm_platform_id" {
 }
 
 variable "vm_memory" {
-  description = "Memory size in MB for the VM (e.g. 2 * 1024 for 2 GB)."
+  description = "Memory size in GB for the VM (default: 4)."
   type        = number
-  default     = 2048
+  default     = 4
 }
 
 variable "vm_cores" {
-  description = "Number of CPU cores for the VM."
+  description = "Number of CPU cores for the VM (default: 2)."
   type        = number
   default     = 2
 }
@@ -50,7 +50,7 @@ variable "public_ssh_key" {
 }
 
 variable "network_cidr" {
-  description = "CIDR block for the VPC subnet."
+  description = "CIDR block for the VPC subnet (default: 10.0.0.0/24)."
   type        = string
   default     = "10.0.0.0/24"
 }
