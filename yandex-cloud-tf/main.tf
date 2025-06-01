@@ -26,8 +26,14 @@ resource "yandex_compute_instance" "vm" {
   }
 
   metadata = {
-    ssh-keys  = "ubuntu:${var.public_ssh_key}"
-    user-data = file("${path.module}/startup.sh")
+    ssh-keys = "ubuntu:${var.public_ssh_key}"
+    user-data = templatefile("startup.sh.tpl", {
+      db_name     = yandex_mdb_postgresql_cluster.givegift_cluster.name
+      db_host     = "c-${yandex_mdb_postgresql_cluster.givegift_cluster.id}.rw.mdb.yandexcloud.net"
+      db_port     = 6432
+      db_user     = yandex_mdb_postgresql_user.givegift_user.name
+      db_password = "password"
+    })
   }
 }
 
@@ -36,19 +42,4 @@ resource "yandex_compute_disk" "boot-disk" {
   size     = 20
   zone     = var.yc_zone
   image_id = var.vm_platform_id
-}
-
-
-// 
-// Yandex container registry
-//
-
-// Create a single Container Registry namespace with repository in it
-resource "yandex_container_registry" "registry" {
-  name      = var.registry_name
-  folder_id = var.yc_folder_id
-}
-
-resource "yandex_container_repository" "givegift_repo" {
-  name = "${yandex_container_registry.registry.id}/givegift"
 }

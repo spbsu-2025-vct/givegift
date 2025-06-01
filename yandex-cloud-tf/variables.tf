@@ -60,3 +60,39 @@ variable "registry_name" {
   type        = string
   default     = "givegift-registry"
 }
+
+variable "cluster_name" {
+  description = "Name for the GiveGift PostgreSQL cluster."
+  type        = string
+  default     = "givegift-cluster"
+}
+
+variable "cluster_version" {
+  description = "PostgreSQL version for the GiveGift cluster."
+  type        = number
+  default     = 15
+}
+
+variable "cluster_resource_preset_id" {
+  description = "Resource preset ID for the GiveGift cluster."
+  type        = string
+  default     = "s3-c2-m8"
+}
+
+variable "cluster_disk_type" {
+  description = "Disk type for the GiveGift cluster."
+  type        = string
+  default     = "network-ssd"
+}
+
+variable "cluster_disk_size" {
+  description = "Disk size (in GB) for the GiveGift cluster."
+  type        = number
+  default     = 10
+}
+
+variable "db_name" {
+  description = "Name for the GiveGift PostgreSQL database."
+  type        = string
+  default     = "givegift-db"
+}

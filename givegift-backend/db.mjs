@@ -1,4 +1,13 @@
 import { Sequelize } from 'sequelize'
+import fs from 'fs'
+
+const dialectOptions = process.env.NODE_ENV === 'production' ? {
+    ssl: {
+        require: true,
+        ca: fs.readFileSync(process.env.CERT_PATH),
+        rejectUnauthorized: false,
+    },
+} : {};
 
 const sequelize = new Sequelize(
     process.env.DB_NAME,
@@ -8,6 +17,7 @@ const sequelize = new Sequelize(
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
         dialect: 'postgres',
+        dialectOptions: dialectOptions,
     }
 )
 

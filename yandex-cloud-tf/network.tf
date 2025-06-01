@@ -35,6 +35,14 @@ resource "yandex_vpc_security_group" "ssh_sg" {
     v4_cidr_blocks = ["0.0.0.0/0"]
   }
 
+  // Ingress: allow PostgreSQL-proxy (port 6432) from anywhere
+  ingress {
+    description    = "Allow PostgreSQL-proxy from anywhere"
+    protocol       = "TCP"
+    port           = 6432
+    v4_cidr_blocks = ["0.0.0.0/0"]
+  }
+
   // Egress: allow all outbound
   egress {
     description    = "Allow all outbound"
