@@ -16,9 +16,7 @@ services:
 
   # Backend service
   backend:
-    build:
-      context: ./givegift-backend
-      dockerfile: Dockerfile
+    image: cr.yandex/crp48bnvom6h1ij5gu1f/givegift-backend:latest
     restart: unless-stopped
     env_file:
       - ./givegift-backend/.env
@@ -37,12 +35,7 @@ services:
 
   # Frontend service (built with Vite + Nginx)
   frontend:
-    build:
-      context: ./givegift-frontend
-      dockerfile: Dockerfile
-      args:
-        SUPABASE_URL: "https://urvlzbwtoshzbckulhlg.supabase.co"
-        SUPABASE_PUBLIC_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVydmx6Ynd0b3NoemJja3VsaGxnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwMjkyODMsImV4cCI6MjA2MTYwNTI4M30.fDcZpqsi-AQqcJyMnvansBCaVeQAcJkkbGdrdaeFsCQ"
+    image: cr.yandex/crp48bnvom6h1ij5gu1f/givegift-frontend:latest
     restart: unless-stopped
     depends_on:
       - backend
