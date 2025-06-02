@@ -11,8 +11,14 @@ data:
   DB_PORT: "5432"
   DB_USER: "neondb_owner"
   DB_PASSWORD: "npg_zTSdi4L5ycgw"
-  ADMIN_EMAIL: "user@example.com"
 
+  # DB_NAME: "givegift-db"
+  # DB_HOST: "c-c9qag0n70vk75sq67g5p.rw.mdb.yandexcloud.net"
+  # DB_PORT: "6432"
+  # DB_USER: "givegift_user"
+  # DB_PASSWORD: "password"
+
+  ADMIN_EMAIL: "user@example.com"
   ADMIN_PASSWORD: "supersecret"
   SESSION_SECRET: "qwertyuiop"
   FIREWORKS_API_KEY: "fw_3ZULv8cieuDM3zcTX9uEpoW7"
