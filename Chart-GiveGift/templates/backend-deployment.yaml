@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-backend
+spec:
+  replicas: {{ .Values.backend.replicaCount }}
+  selector:
+    matchLabels:
+      name: {{ .Chart.Name }}-backend
+      tier: backend
+  template:
+    metadata:
+      labels:
+        name: {{ .Chart.Name }}-backend
+        tier: backend
+    spec:
+      containers:
+        - name: backend-container
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          imagePullSecrets:
+            - name: secret-yandex-registry
+          imagePullPolicy: {{ .Values.backend.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.backend.service.port }}
+          envFrom:
+            - configMapRef:
+                name: backend-cm
+          env:
+            - name: CERT_PATH
+              value: "/etc/ssl/certs/server-ca.crt"
+          volumeMounts:
+            - name: db-ca-cert-vol
+              mountPath: /etc/ssl/certs
+              readOnly: true
+              
+      volumes:
+        - name: db-ca-cert-vol
+          secret:
+            secretName: {{ .Chart.Name }}-db-ca
+            items:
+              - key: server-ca.crt
+                path: server-ca.crt

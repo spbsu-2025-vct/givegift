@@ -1,40 +1,22 @@
 version: "3.8"
 
 services:
-  # Postgres database service
-  db:
-    image: postgres:15-alpine
-    restart: always
-    environment:
-      POSTGRES_DB: givegift
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-    volumes:
-      - db-data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-
-  # Backend service
   backend:
-    image: cr.yandex/crp48bnvom6h1ij5gu1f/givegift-backend:latest
+    image: cr.yandex/crplvdacg3tpu0lg6jj7/givegift-backend:latest
     restart: unless-stopped
     env_file:
       - ./givegift-backend/.env
     environment:
-      DB_HOST: db
-    depends_on:
-      - db
+      - CERT_PATH=/certs/cacert.pem
+    volumes:
+      - C:/Users/AmEl/Downloads/cacert.pem:/certs/cacert.pem:ro
     ports:
       - "5000:5000"
 
-  # Frontend service (built with Vite + Nginx)
   frontend:
-    image: cr.yandex/crp48bnvom6h1ij5gu1f/givegift-frontend:latest
+    image: cr.yandex/crplvdacg3tpu0lg6jj7/givegift-frontend:dev
     restart: unless-stopped
     depends_on:
       - backend
     ports:
       - "80:80"
-
-volumes:
-  db-data:

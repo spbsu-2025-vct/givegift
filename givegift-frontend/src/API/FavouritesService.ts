@@ -3,22 +3,22 @@ import type { IFavProduct } from "../types";
 
 export default class FavouritesService {
   static async addToFavourites(favProduct: IFavProduct) {
-    return await axios.post("http://127.0.0.1:5000/favourites/add", favProduct);
+    return await axios.post(`${import.meta.env.VITE_BACKEND_URL}/favourites/add`, favProduct);
   }
 
   static async removeFromFavourites(favProduct: IFavProduct) {
-    return await axios.delete("http://127.0.0.1:5000/favourites/remove", { params: { userID: favProduct.userID, market_link: favProduct.market_link } });
+    return await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/favourites/remove`, { params: { userID: favProduct.userID, market_link: favProduct.market_link } });
   }
 
   static async editFavouritesTag(favProduct: IFavProduct, newTag: string) {
     return await axios.patch(
-      "http://127.0.0.1:5000/favourites/edit_tag",
+      `${import.meta.env.VITE_BACKEND_URL}/favourites/edit_tag`,
       { tag: newTag },
       { params: { userID: favProduct.userID, market_link: favProduct.market_link } }
     );
   }
 
   static async fetchUserFavourites(userID: string) {
-    return await axios.get("http://127.0.0.1:5000/favourites/fetch", { params: { userID } });
+    return await axios.get(`${import.meta.env.VITE_BACKEND_URL}/favourites/fetch`, { params: { userID } });
   }
 }
