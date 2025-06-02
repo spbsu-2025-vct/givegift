@@ -26,14 +26,8 @@ resource "yandex_compute_instance" "vm" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${var.public_ssh_key}"
-    user-data = templatefile("startup.sh.tpl", {
-      db_name     = yandex_mdb_postgresql_cluster.givegift_cluster.name
-      db_host     = "c-${yandex_mdb_postgresql_cluster.givegift_cluster.id}.rw.mdb.yandexcloud.net"
-      db_port     = 6432
-      db_user     = yandex_mdb_postgresql_user.givegift_user.name
-      db_password = "password"
-    })
+    ssh-keys  = "ubuntu:${var.public_ssh_key}"
+    user-data = file("startup.sh")
   }
 }
 

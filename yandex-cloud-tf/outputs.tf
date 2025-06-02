@@ -13,7 +13,7 @@ output "cluster_connection_params" {
   value = {
     "host" : "c-${yandex_mdb_postgresql_cluster.givegift_cluster.id}.rw.mdb.yandexcloud.net",
     "port" : 6432,
-    "dbname" : yandex_mdb_postgresql_cluster.givegift_cluster.name,
+    "dbname" : yandex_mdb_postgresql_database.givegift_db.name,
     "user_name" : yandex_mdb_postgresql_user.givegift_user.name
   }
 }
