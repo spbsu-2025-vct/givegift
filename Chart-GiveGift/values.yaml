@@ -5,7 +5,7 @@ frontend:
   image:
     repository: cr.yandex/crplvdacg3tpu0lg6jj7/givegift-frontend
     tag: latest
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
   replicaCount: 1
 
 backend:
@@ -16,7 +16,10 @@ backend:
     repository: cr.yandex/crplvdacg3tpu0lg6jj7/givegift-backend
     tag: latest
     pullPolicy: IfNotPresent
-  replicaCount: 3
+  replicaCount:
+    min: 1
+    max: 5
+  cpuAverageUtilization: 15
 
 db:
   localCertPath: C:/Users/AmEl/Downloads/cacert.pem
