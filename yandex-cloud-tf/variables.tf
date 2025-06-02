@@ -82,7 +82,7 @@ variable "cluster_resource_preset_id" {
 variable "cluster_disk_type" {
   description = "Disk type for the GiveGift cluster."
   type        = string
-  default     = "network-ssd"
+  default     = "network-hdd"
 }
 
 variable "cluster_disk_size" {
