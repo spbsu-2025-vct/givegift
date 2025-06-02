@@ -5,7 +5,7 @@ frontend:
   image:
     repository: cr.yandex/crplvdacg3tpu0lg6jj7/givegift-frontend
     tag: latest
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   replicaCount: 1
 
 backend:
@@ -15,7 +15,7 @@ backend:
   image:
     repository: cr.yandex/crplvdacg3tpu0lg6jj7/givegift-backend
     tag: latest
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   replicaCount:
     min: 1
     max: 5

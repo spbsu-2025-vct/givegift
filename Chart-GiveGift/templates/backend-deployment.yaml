@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -23,7 +24,7 @@ spec:
             - configMapRef:
                 name: backend-cm
           env:
-            - name: CERT_PATH
+            - name: DB_CERT_PATH
               value: "/etc/ssl/certs/server-ca.crt"
           volumeMounts:
             - name: db-ca-cert-vol

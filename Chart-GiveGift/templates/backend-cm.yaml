@@ -4,7 +4,6 @@ metadata:
   name: backend-cm
 data:
   PORT: "5000"
-  NODE_ENV: "production"
 
   DB_NAME: "neondb"
   DB_HOST: "ep-odd-butterfly-a2wzv4a4-pooler.eu-central-1.aws.neon.tech"
@@ -12,15 +11,13 @@ data:
   DB_USER: "neondb_owner"
   DB_PASSWORD: "npg_zTSdi4L5ycgw"
 
+  # For cluster
   # DB_NAME: "givegift-db"
   # DB_HOST: "c-c9qag0n70vk75sq67g5p.rw.mdb.yandexcloud.net"
   # DB_PORT: "6432"
   # DB_USER: "givegift_user"
   # DB_PASSWORD: "password"
 
-  ADMIN_EMAIL: "user@example.com"
-  ADMIN_PASSWORD: "supersecret"
-  SESSION_SECRET: "qwertyuiop"
   FIREWORKS_API_KEY: "fw_3ZULv8cieuDM3zcTX9uEpoW7"
 
 # TODO: its unsafe we need secrets!!!!!!!!!!!!!!!
