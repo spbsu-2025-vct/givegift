@@ -21,8 +21,8 @@ spec:
           ports:
             - containerPort: {{ .Values.backend.service.port }}
           envFrom:
-            - configMapRef:
-                name: backend-cm
+            - secretRef:
+                name: {{ .Values.db.secretName }}
           env:
             - name: DB_CERT_PATH
               value: "/etc/ssl/certs/server-ca.crt"

@@ -7,7 +7,7 @@ services:
     env_file:
       - ./givegift-backend/.env
     environment:
-      - CERT_PATH=/certs/cacert.pem
+      - DB_CERT_PATH=/certs/cacert.pem
     volumes:
       - C:/Users/AmEl/Downloads/cacert.pem:/certs/cacert.pem:ro
     ports:

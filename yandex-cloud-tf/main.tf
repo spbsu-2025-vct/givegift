@@ -29,6 +29,23 @@ resource "yandex_compute_instance" "vm" {
     ssh-keys  = "ubuntu:${var.public_ssh_key}"
     user-data = file("startup.sh")
   }
+
+  # Waiting for SSH and Docker to be ready
+  provisioner "remote-exec" {
+    connection {
+      type        = "ssh"
+      host        = self.network_interface[0].nat_ip_address
+      user        = "ubuntu"
+      private_key = file("C:/Users/AmEl/.ssh/id_rsa")
+    }
+
+    inline = [
+      "echo 'Waiting for startup script to complete...'",
+      "timeout 600 bash -c 'until [ -f /var/log/startup-script.log ] && grep -q \"Startup script finished\" /var/log/startup-script.log; do sleep 10; done'",
+      "echo 'Docker installation completed!'",
+      "docker --version"
+    ]
+  }
 }
 
 resource "yandex_compute_disk" "boot-disk" {

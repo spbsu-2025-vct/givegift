@@ -22,5 +22,5 @@ backend:
   cpuAverageUtilization: 15
 
 db:
-  localCertPath: C:/Users/AmEl/Downloads/cacert.pem
-  # localCertPath: C:/Users/AmEl/.postgresql/root.crt
+  localCertPath: C:/Users/AmEl/.postgresql/root.crt
+  secretName: givegift-db-secret
