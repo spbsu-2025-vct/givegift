@@ -30,7 +30,7 @@ resource "yandex_compute_instance" "vm" {
     user-data = file("startup.sh")
   }
 
-  # Waiting for SSH and Docker to be ready
+  // Waiting for SSH and Docker to be ready
   provisioner "remote-exec" {
     connection {
       type        = "ssh"

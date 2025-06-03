@@ -14,11 +14,19 @@ variable "yc_zone" {
   default     = "ru-central1-a"
 }
 
+variable "yc_service_account_name" {
+  description = "The name of the Yandex Cloud service account to use."
+  type        = string
+  default     = "tf-sa"
+}
+
 variable "yc_token" {
   description = "OAuth token or service-account key file content for the Yandex provider."
   type        = string
   sensitive   = true
 }
+
+// ------------------------------------------------------------------------------
 
 variable "vm_name" {
   description = "The name of the Compute instance to create."
@@ -44,6 +52,8 @@ variable "vm_cores" {
   default     = 2
 }
 
+// ------------------------------------------------------------------------------
+
 variable "public_ssh_key" {
   description = "Your SSH public key to provision into ~/.ssh/authorized_keys."
   type        = string
@@ -55,11 +65,15 @@ variable "network_cidr" {
   default     = "10.0.0.0/24"
 }
 
+// ------------------------------------------------------------------------------
+
 variable "registry_name" {
   description = "Name to use for your Yandex Container Registry."
   type        = string
   default     = "givegift-registry"
 }
+
+// ------------------------------------------------------------------------------
 
 variable "cluster_name" {
   description = "Name for the GiveGift PostgreSQL cluster."
@@ -96,3 +110,49 @@ variable "db_name" {
   type        = string
   default     = "givegift-db"
 }
+
+// ------------------------------------------------------------------------------
+
+variable "k8s_cluster_name" {
+  description = "Name of the managed Kubernetes cluster"
+  type        = string
+  default     = "givegift-k8s-cluster"
+}
+
+variable "k8s_version" {
+  description = "Kubernetes control plane version"
+  type        = string
+  default     = "1.30"
+}
+
+variable "node_group_name" {
+  description = "Name of the node group"
+  type        = string
+  default     = "givegift-k8s-node-group"
+}
+
+variable "node_count" {
+  description = "Fixed number of nodes in the node group"
+  type        = number
+  default     = 2
+}
+
+variable "node_platform_id" {
+  description = "Compute instance type for each node"
+  type        = string
+  default     = "standard-v2"
+}
+
+variable "node_cores" {
+  description = "Number of CPU cores per node"
+  type        = number
+  default     = 2
+}
+
+variable "node_memory" {
+  description = "Amount of RAM (in GB) per node"
+  type        = number
+  default     = 2
+}
+
+// ------------------------------------------------------------------------------
