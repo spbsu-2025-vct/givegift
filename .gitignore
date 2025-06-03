@@ -1,0 +1,8 @@
+key.json
+
+yandex-cloud-tf/*.tfvars
+yandex-cloud-tf/.terraform*
+yandex-cloud-tf/terraform.tfstate
+yandex-cloud-tf/terraform.tfstate.backup
+
+steps.md

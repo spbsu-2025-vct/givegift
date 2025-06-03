@@ -1,7 +1,10 @@
 import { Box, Typography, Button } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
+import { useSupabase } from '../../context/SupabaseContext/SupabaseContext';
+import { RouteNames } from '../../router';
 
 export const NotFound = () => {
+    const { session } = useSupabase();
     return (
         <Box
             sx={{
@@ -39,7 +42,7 @@ export const NotFound = () => {
             <Button
                 variant="contained"
                 component={RouterLink}
-                to="/"
+                to={session ? "/" : RouteNames.AUTH}
                 sx={{
                     bgcolor: '#fff',
                     color: '#313335',

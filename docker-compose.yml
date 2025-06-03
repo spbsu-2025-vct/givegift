@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  backend:
+    image: cr.yandex/crplvdacg3tpu0lg6jj7/givegift-backend:latest
+    restart: unless-stopped
+    env_file:
+      - ./givegift-backend/.env
+    environment:
+      - CERT_PATH=/certs/cacert.pem
+    volumes:
+      - C:/Users/AmEl/Downloads/cacert.pem:/certs/cacert.pem:ro
+    ports:
+      - "5000:5000"
+
+  frontend:
+    image: cr.yandex/crplvdacg3tpu0lg6jj7/givegift-frontend:dev
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "80:80"

@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize'
+import fs from 'fs'
 
 const sequelize = new Sequelize(
     process.env.DB_NAME,
@@ -8,6 +9,13 @@ const sequelize = new Sequelize(
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
         dialect: 'postgres',
+        dialectOptions: {
+            ssl: {
+                require: true,
+                ca: fs.readFileSync(process.env.DB_CERT_PATH),
+                rejectUnauthorized: false,
+            },
+        },
     }
 )
 
