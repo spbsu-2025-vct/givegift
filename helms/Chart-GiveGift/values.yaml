@@ -6,7 +6,10 @@ frontend:
     repository: cr.yandex/crplvdacg3tpu0lg6jj7/givegift-frontend
     tag: latest
     pullPolicy: Always
-  replicaCount: 1
+  replicaCount:
+    min: 1
+    max: 5
+  cpuAverageUtilization: 15
 
 backend:
   service:
@@ -25,4 +28,4 @@ db:
   localCertPath: C:/Users/AmEl/.postgresql/root.crt
   secretName: givegift-db-secret
 
-ingressExtIP: 158.160.189.11
+ingressExtIP: 84.201.146.49

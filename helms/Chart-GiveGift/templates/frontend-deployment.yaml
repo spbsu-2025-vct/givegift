@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: {{ .Chart.Name }}-frontend
 spec:
-  replicas: {{ .Values.frontend.replicaCount }}
   selector:
     matchLabels:
       name: {{ .Chart.Name }}-frontend
@@ -20,3 +19,22 @@ spec:
           imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.frontend.service.port }}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ .Chart.Name }}-frontend-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ .Chart.Name }}-frontend
+  minReplicas: {{ .Values.frontend.replicaCount.min }}
+  maxReplicas: {{ .Values.frontend.replicaCount.max }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.frontend.cpuAverageUtilization }}

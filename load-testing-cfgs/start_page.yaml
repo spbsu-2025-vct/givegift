@@ -6,8 +6,8 @@ pandora:
       - id: HTTP
         gun:
           type: http
-          target: github.com:443
-          ssl: true
+          target: 84.201.146.49.nip.io:80
+          ssl: false
         ammo:
           type: uri
           uris:
@@ -20,11 +20,9 @@ pandora:
           times: 1000
         rps:
           - type: line
-            from: 5
-            to: 10
-            duration: 30s
-          - type: once
-            times: 10000
+            from: 1000
+            to: 3000
+            duration: 2m
         discard_overflow: true
     log:
       level: error
@@ -40,5 +38,5 @@ autostop:
     - negative_http(2xx,100%,10s,)
     - negative_net(0,100%,5s,)
     - instances(90%,5s)
-    - limit(1m)
+    - limit(3m)
 core: {}
