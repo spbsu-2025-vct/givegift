@@ -59,10 +59,10 @@ variable "public_ssh_key" {
   type        = string
 }
 
-variable "network_cidr" {
-  description = "CIDR block for the VPC subnet (default: 10.0.0.0/24)."
+variable "zone_a_v4_cidr_block" {
+  description = "CIDR block for the VPC zone-a subnet (default: 10.1.0.0/16)."
   type        = string
-  default     = "10.0.0.0/24"
+  default     = "10.1.0.0/16"
 }
 
 // ------------------------------------------------------------------------------
@@ -75,37 +75,37 @@ variable "registry_name" {
 
 // ------------------------------------------------------------------------------
 
-variable "cluster_name" {
+variable "psql_cluster_name" {
   description = "Name for the GiveGift PostgreSQL cluster."
   type        = string
-  default     = "givegift-cluster"
+  default     = "givegift-psql-cluster"
 }
 
-variable "cluster_version" {
+variable "psql_cluster_version" {
   description = "PostgreSQL version for the GiveGift cluster."
   type        = number
   default     = 15
 }
 
-variable "cluster_resource_preset_id" {
-  description = "Resource preset ID for the GiveGift cluster."
+variable "psql_cluster_resource_preset_id" {
+  description = "Resource preset ID for the GiveGift PostgreSQL cluster."
   type        = string
   default     = "s3-c2-m8"
 }
 
-variable "cluster_disk_type" {
-  description = "Disk type for the GiveGift cluster."
+variable "psql_cluster_disk_type" {
+  description = "Disk type for the GiveGift PostgreSQL cluster."
   type        = string
   default     = "network-hdd"
 }
 
-variable "cluster_disk_size" {
-  description = "Disk size (in GB) for the GiveGift cluster."
+variable "psql_cluster_disk_size" {
+  description = "Disk size (in GB) for the GiveGift PostgreSQL cluster."
   type        = number
   default     = 10
 }
 
-variable "db_name" {
+variable "psql_db_name" {
   description = "Name for the GiveGift PostgreSQL database."
   type        = string
   default     = "givegift-db"
@@ -140,7 +140,7 @@ variable "node_count" {
 variable "node_platform_id" {
   description = "Compute instance type for each node"
   type        = string
-  default     = "standard-v2"
+  default     = "standard-v1"
 }
 
 variable "node_cores" {
@@ -152,7 +152,7 @@ variable "node_cores" {
 variable "node_memory" {
   description = "Amount of RAM (in GB) per node"
   type        = number
-  default     = 2
+  default     = 4
 }
 
 // ------------------------------------------------------------------------------
