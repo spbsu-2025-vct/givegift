@@ -17,3 +17,8 @@ output "k8s_cluster_name" {
   description = "Name of the managed Kubernetes cluster"
   value       = yandex_kubernetes_cluster.k8s-cluster.name
 }
+
+output "loadtesting_agent_id" {
+  description = "The ID of the created Yandex Load Testing agent"
+  value       = yandex_loadtesting_agent.givegift-agent.id
+}

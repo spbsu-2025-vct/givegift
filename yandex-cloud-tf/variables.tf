@@ -28,29 +28,29 @@ variable "yc_token" {
 
 // ------------------------------------------------------------------------------
 
-variable "vm_name" {
-  description = "The name of the Compute instance to create."
-  type        = string
-  default     = "terraform-vm"
-}
+# variable "vm_name" {
+#   description = "The name of the Compute instance to create."
+#   type        = string
+#   default     = "terraform-vm"
+# }
 
-variable "vm_platform_id" {
-  description = "The platform ID or image family for the VM (default: ubuntu-2204-lts)."
-  type        = string
-  default     = "ubuntu-2204-lts"
-}
+# variable "vm_platform_id" {
+#   description = "The platform ID or image family for the VM (default: ubuntu-2204-lts)."
+#   type        = string
+#   default     = "ubuntu-2204-lts"
+# }
 
-variable "vm_memory" {
-  description = "Memory size in GB for the VM (default: 4)."
-  type        = number
-  default     = 4
-}
+# variable "vm_memory" {
+#   description = "Memory size in GB for the VM (default: 4)."
+#   type        = number
+#   default     = 4
+# }
 
-variable "vm_cores" {
-  description = "Number of CPU cores for the VM (default: 2)."
-  type        = number
-  default     = 2
-}
+# variable "vm_cores" {
+#   description = "Number of CPU cores for the VM (default: 2)."
+#   type        = number
+#   default     = 2
+# }
 
 // ------------------------------------------------------------------------------
 

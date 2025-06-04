@@ -1,9 +1,6 @@
 //
 // Kubernetes Cluster
 //
-data "yandex_iam_service_account" "givegift" {
-  name = var.yc_service_account_name
-}
 
 resource "yandex_kubernetes_cluster" "k8s-cluster" {
   description = "Managed Service for Kubernetes GiveGift cluster"
