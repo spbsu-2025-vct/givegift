@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: givegift-argocd-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/spbsu-2025-vct/givegift-argocd.git
+    targetRevision: main
+    path: givegift/
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: givegift-argocd-app-ns
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true

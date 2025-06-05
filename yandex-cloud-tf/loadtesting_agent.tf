@@ -15,7 +15,6 @@ resource "yandex_loadtesting_agent" "givegift-agent" {
       initialize_params {
         size = 15
       }
-      auto_delete = true
     }
     network_interface {
       subnet_id = yandex_vpc_subnet.givegift-subnet-a.id
